@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<title></title>
+		<meta charset="utf-8">
+		<title>精灵</title>
 		<style>
 		    body{
 		    	background: #DDDDDD;
 		    }
 			#canvas{
-				border: thin inset #ddd;
-				margin: 10px;
+				border: thin inset rgba(100,150,230,0.5);
+				left: 0px;
+				top: 20px;
+				position: absolute;
+				margin: 20px;
 				padding: 10px;
 				background: #fff;
+				cursor: pointer;
+			}
+			#readout{
+				margin-top: 10px;
+				margin-left: 15px;
+				color: blue;
 			}
 		</style>
 		<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-		<script type="text/javascript" src="./js/example.js"></script>
+		<script type="text/javascript" src="./js/sprite.js"></script>
 	</head>
 	<body>
-		<!--http://www.w3school.com.cn/jsref/dom_obj_canvasrenderingcontext2d.asp-->
+		<div id="readout"></div>
 		<canvas id="canvas" width="500" height="500">
 			not support!
 		</canvas>
-		
-		<a href="./clock.html">时钟</a>
 	</body>
 </html>
