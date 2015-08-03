@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			
+			a{
+				text-decoration: none;
+				font-family: "arial, helvetica, sans-serif";
+				border-bottom: dashed 2px #9f3;
+			}
+			a:link{color: #f60;}
+			a:visited{color: #900;}
+			a:active{color: #f33;}
+			a:hover{color: #B2F511;}
+			
+			a.button{
+				border: solid 1px #000;
+				background-color: #999;
+			    border-radius: 4px;
+			    padding: 5px 20px;
+			    box-shadow: 2px 2px 2px #0000FF;
+			}
+			a.light{
+				border: solid 1px #000;
+			    border-radius: 4px;
+			    padding: 5px 20px;
+			    background: #ffd65e; /* Old browsers */
+                background: -moz-linear-gradient(45deg, #ffd65e 0%, #febf04 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#ffd65e), color-stop(100%,#febf04)); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(45deg, #ffd65e 0%,#febf04 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(45deg, #ffd65e 0%,#febf04 100%); /* Opera 11.10+ */
+                background: -ms-linear-gradient(45deg, #ffd65e 0%,#febf04 100%); /* IE10+ */
+                background: linear-gradient(45deg, #ffd65e 0%,#febf04 100%); /* W3C */
+			}
+			
+			/*按钮动画特效*/
+			@keyframes greenPulse {
+				 from { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+                 50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
+                 to { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+			}
+			@-webkit-keyframes greenPulse {
+				from { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+                 50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
+                 to { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+			}
+			
+			a.green {
+				border: solid 1px #000;
+			    border-radius: 4px;
+			    padding: 5px 20px;
+				animation-name: greenPulse;
+				animation-duration: 3s;
+				animation-iteration-count: infinite;
+				-webkit-animation-name: greenPulse;
+				-webkit-animation-duration: 3s;
+				-webkit-animation-iteration-count: infinite;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<ul>
+				<li><a href="">首页</a> </li>
+				<li><a href="">首页</a> </li>
+				<li><a href="">首页</a> </li>
+				<li><a href="">首页</a> </li>
+				<li><a href="">首页</a> </li>
+			</ul>
+		</nav>
+		<a href="" class="button">按钮</a>
+		
+		<a href="" class="light">按钮</a>
+		
+		<a href="" class="green">按钮</a>
+	</body>
+</html>
