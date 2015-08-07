@@ -4,17 +4,109 @@
 		<meta charset="utf-8">
 		<title></title>
 		<style>
-			
+			/*
 			a{
 				text-decoration: none;
 				font-family: "arial, helvetica, sans-serif";
-				border-bottom: dashed 2px #9f3;
 			}
 			a:link{color: #f60;}
 			a:visited{color: #900;}
 			a:active{color: #f33;}
-			a:hover{color: #B2F511;}
+			a:hover{color: #B2F511;}*/
+			/*水平导航 使用dispaly:inline*/
+			nav.inline ul{
+				margin-left: 0px;
+				padding-left: 0px;
+				list-style-type: none;
+				border-bottom: 1px dashed #000;
+				text-align: center;/*文本居中*/
+			}
+			nav.inline ul li{
+				display: inline;/*将li的display设置为inline就是水平了*/
+				margin-right: -5px;/*移除li之间的空隙*/
+			}
+			nav.inline a{
+				display: inline-block;
+				border: 1px dashed #000;
+				border-bottom: none;
+				padding: 5px 15px 5px 15px;
+				background-color: #eaeaea;
+				text-decoration: none;
+				color: #333333;
+			}
+			/*水平导航 使用float:left*/
+			nav.float ul{
+				margin: 0px;
+				padding: 0px;
+				list-style-type: none;
+				border-bottom: 1px solid rgb(204,204,204);
+				overflow: hidden;/*在使用float时，在ul里的floated list items会
+				脱离ul呈现漂浮状态，使用该指令防止*/
+				
+			}
+			nav.float ul li{
+				float: left;/*将li的display设置为inline就是水平了*/
+			}
+			nav.float  a{
+				display: block;
+				border: 1px solid rgb(204,204,204);
+				border-radius: 8px 8px 0 0;
+				border-bottom: none;
+				padding: 5px 15px 5px 15px;
+				margin-right: 5px;
+				background-color: #eaeaea;
+				background-image: -webkit-linear-gradient(rgb(175,175,175),rgb(95,95,95));
+				background-image: -moz-linear-gradient(rgb(175,175,175),rgb(95,95,95));
+				background-image: linear-gradient(rgb(175,175,175),rgb(95,95,95));
+				text-decoration: none;
+				color: #fff;
+				width: 4em;
+				text-align: center;
+			}
 			
+			/*第三个navcontainer*/
+			
+			#navcontainer ul{
+				list-style-type: none;
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			#navcontainer li{
+				margin: 0 0 .2em 0;
+			}
+			
+			#navcontainer a{
+				display: block;
+				color: #036;
+				background-color: transparent;
+				width: 9em;
+				padding: .2em .8em;
+				text-decoration: none;
+				border-top: 1px solid #ddd;
+				border-left: 1px solid #ddd;
+				border-right: 1px solid #036;
+				border-bottom: 1px solid #036;
+			}
+			#navcontainer a:hover{
+				background-color: #369;
+				color: #fff;
+				border-top: 1px solid #ddd;
+				border-left: 1px solid #ddd;
+				border-right: 1px solid #036;
+				border-bottom: 1px solid #036;
+			}
+			#active a{
+				display: block;
+				color: #fff;
+				background-color: #600;
+				width: 9em;
+				padding: .2em .8em;
+				text-decoration: none;
+				
+			}
+			
+			/*按钮*/
 			a.button{
 				border: solid 1px #000;
 				background-color: #999;
@@ -61,15 +153,37 @@
 		</style>
 	</head>
 	<body>
-		<nav>
+		<nav class="inline">
 			<ul>
 				<li><a href="">首页</a> </li>
-				<li><a href="">首页</a> </li>
+				<li><a href="">新闻资讯</a> </li>
 				<li><a href="">首页</a> </li>
 				<li><a href="">首页</a> </li>
 				<li><a href="">首页</a> </li>
 			</ul>
 		</nav>
+		
+		<nav class="float">
+			<ul>
+				<li><a href="">首页</a> </li>
+				<li><a href="">新闻资讯</a> </li>
+				<li><a href="">首页</a> </li>
+				<li><a href="">首页</a> </li>
+				<li><a href="">首页</a> </li>
+			</ul>
+		</nav>
+		<br />
+		<br />
+		<div id="navcontainer">
+            <ul>
+                <li><a href="#">Milk</a></li>
+				<li id="active"><a href="#">Eggs</a></li>
+				<li><a href="#">Cheese</a></li>
+				<li><a href="#">Vegetables</a></li>
+				<li><a href="#">Fruit</a></li>
+			</ul>
+		</div>
+		<hr />
 		<a href="" class="button">按钮</a>
 		
 		<a href="" class="light">按钮</a>

@@ -1,0 +1,44 @@
+@media (max-width: 480px) {
+	body{
+		background-color: #ddd;
+	}
+	
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+	body{
+		background-color: #D0E4FE;
+		
+	}
+	
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+	body{
+		background-color: #cca;
+	}
+	
+}
+
+body{
+	border: 1px solid #000000;
+	margin: 0 auto;
+}
+
+header{
+	border: 1px solid #ddd;
+	width: auto;
+	height: 100px;
+}
+
+section{
+	border: 1px solid #ddd;
+	width: auto;
+	height: auto;
+}
+
+footer{
+	border: 1px solid #ddd;
+	width: auto;
+	height: 100px;
+}
