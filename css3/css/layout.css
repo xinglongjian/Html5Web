@@ -31,6 +31,32 @@ header{
 	height: 100px;
 }
 
+.topheader{
+	height: 20px;
+	
+}
+
+nav.inline ul{
+	margin-left: 0px;
+	padding-left: 0px;
+    list-style-type: none;
+	border-bottom: 1px dashed #000;
+	text-align: center;/*文本居中*/
+}
+nav.inline ul li{
+	display: inline;/*将li的display设置为inline就是水平了*/
+	margin-right: -5px;/*移除li之间的空隙*/
+}
+nav.inline a{
+	display: inline-block;
+	border: 1px dashed #000;
+	border-bottom: none;
+	padding: 5px 15px 5px 15px;
+	background-color: #eaeaea;
+	text-decoration: none;
+	color: #333333;
+}
+
 section{
 	border: 1px solid #ddd;
 	width: auto;
