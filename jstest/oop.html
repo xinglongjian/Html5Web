@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script>
+			//原始类型
+			var number=32,pi=3.14;
+			var str='str';
+			var flag=false;
+			var un=undefined;
+			var nu=null;
+			//查看变量类型
+			var type=typeof(str);//string
+			var t=typeof nu;
+			//Array
+			var array=[];
+			array=[1,2,3]
+			//if
+			var i=4;
+			if(i>2)
+			  console.log('');
+			//判断某个变量是否存在
+			if(thisvar)
+			  console.log("this var is exist");
+			//更好地方式是使用typeof
+			if(typeof thisvar !==undefined)
+			  console.log("this var is exist");
+			//预定义函数
+			parseInt();
+			parseFloat();
+			isNaN();
+			isFinite();
+			encodeURI();
+			decodeURI();
+			encodeURIComponent();
+			decodeURIComponent();
+			eval();
+		</script>
+	</head>
+	<body>
+	<h1>一、基本内容</h1>
+	<h4>1、原始类型</h4>
+	<code>
+		var number=32,pi=3.14;<br />
+		var str='str';<br />
+		var flag=false;<br />
+		var un=undefined;<br />
+		var nu=null;<br />
+	</code>
+	<h4>2、查看变量类型(typeof)</h4>
+	<code>
+		var type=typeof(str);//string
+	</code>
+	<h4>3、boolean</h4>
+	<span>所有的值都转为true，除了以下："",undefined,null,0,NaN,false</span>
+	<h4>4、Array</h4>
+	<code>
+		var array=[];<br />
+		array=[1,2,3];<br />
+		array[2]='ddd';<br />
+		delete array[2];(并没有实际删除，只是将该值置为undefined，数组长度不变)
+		array[2]=[4,5,6];
+		var s='one';
+		s[0]='o';
+	</code>
+	<h4>5、if条件语句</h4>
+	<code>
+		var i=4;<br />
+		if(i>2)<br />
+		    console.log('');<br />
+		//判断某个变量是否存在<br />
+		if(thisvar)<br />
+			console.log("this var is exist");<br />
+		//更好地方式是使用typeof<br />
+		if(typeof thisvar !==undefined)<br />
+			console.log("this var is exist");<br />
+	</code>
+	<h1>二、函数</h1>
+	<span>函数内获取参数的对象是arguments</span>
+	<h3>预定义函数：</h3>
+	<code>
+		parseInt();<br />
+		parseFloat();<br />
+		isNaN();<br />
+		isFinite();<br />
+		encodeURI();<br />
+		decodeURI();<br />
+		encodeURIComponent();<br />
+		decodeURIComponent();<br />
+		eval();<br />
+	</code>
+	<h4>变量范围</h4>
+	<code>
+		function f(){local=2}<br />
+		该变量没有使用var声明，在没有调用该f()函数前，该变量不存在。<br />
+		当调用该f()函数后，该变量的范围是全局的。
+	</code>
+	<h4>函数是数据</h4>
+	<code>
+		function f(){return 1;}<br />
+		var f=function(){return 1;}
+	</code>
+	<h4>1、Using anonymous functions(匿名函数)</h4>
+	<code>
+		function(a){return 1;}
+	</code>
+	<h4>2、Callbacks functions(回调函数)</h4>
+	<code>
+		function one(){return 1;}<br />
+		function two(){return 2;}<br />
+		function three(a,b){<br />
+			return a()+b();<br />
+		}<br />
+		(当传递函数A到另一个函数B中，由B执行A，那么就说A是回调函数，<br />
+		如果A是匿名，那么就是匿名回调函数)
+	</code>
+	<h4>3、Self-invoking functions(自我调用函数)</h4>
+	<code>
+		(function(){<br />
+			alert('boo');<br />
+		})()<br />
+		//该匿名函数，在定义完后就自我调用
+	</code>
+	<h4>4、Inner functions (functions defined inside functions)(内部函数)</h4>
+	<code>
+		function a(param){<br />
+			function b(input){<br />
+				return input*2;<br />
+			}<br />
+			return 'the result is '+b(param);<br />
+		}<br />
+		或者<br />
+		function a(param){<br />
+			var b=function(input){<br />
+				return input*2;<br />
+			}<br />
+			return 'the result is '+b(param);<br />
+		}<br />
+		
+	</code>
+	<h4>5、Functions that return functions (返回一个函数的函数)</h4>
+	<code>
+		function a(){<br />
+			alert('A!');<br />
+			return function(){<br />
+				alert('B!');<br />
+			}<br />
+		}<br />
+		
+		var newFunc=a();//A!<br />
+		newFunc();//B!<br />
+	</code>
+	<h4>6、Functions that redefine themselves(重新定义自己函数)</h4>
+	<code>
+		function a(){
+			alert('A!');
+			a=function(){
+				alert('B!');
+			}
+		}
+	</code>
+	<h4>7、Closures(闭包函数)</h4>
+	<code>
+		function f(){
+			var b="b";//局部变量
+			return function(){
+				return b;
+			}
+			
+		}
+		
+		var n=f();
+		n();//b
+		
+		(闭包:在全局范围内访问函数的私有变量)
+		
+	</code>
+	</body>
+</html>
