@@ -153,25 +153,25 @@
 	</code>
 	<h4>6、Functions that redefine themselves(重新定义自己函数)</h4>
 	<code>
-		function a(){
-			alert('A!');
-			a=function(){
-				alert('B!');
-			}
+		function a(){<br />
+			alert('A!');<br />
+			a=function(){<br />
+				alert('B!');<br />
+			}<br />
 		}
 	</code>
 	<h4>7、Closures(闭包函数)</h4>
 	<code>
-		function f(){
-			var b="b";//局部变量
-			return function(){
-				return b;
-			}
+		function f(){<br />
+			var b="b";//局部变量<br />
+			return function(){<br />
+				return b;<br />
+			}<br />
 			
-		}
+		}<br />
 		
-		var n=f();
-		n();//b
+		var n=f();<br />
+		n();//b<br />
 		
 		(闭包:在全局范围内访问函数的私有变量)
 		
