@@ -6,11 +6,21 @@
 		<script>
 			(function(doc){
 				var t=doc.getElementById("test");
-				alert('dd');
+				
+				//对象与JSON格式数据互转
+				var obj={
+					id:'id',
+					name:'wang',
+					sex:14
+				}
+				var jsonobj=JSON.stringify(obj);
+				alert(jsonobj);
+				var parseobj=JSON.parse(jsonobj);
+				alert(parseobj.name);
 			})(document)
 		</script>
 	</head>
 	<body>
-		 <span id="test">test,自我调用函数，用于初始化，或只调用一次</span>
+		 <span id="test">test,自我调用函数，用于初始化，或只调用一次。对象与JSON格式数据互转</span>
 	</body>
 </html>
