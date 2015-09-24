@@ -8,6 +8,9 @@
         <script src="js/imageedit.js"></script>
 	</head>
 	<body>
+		<form>
+			<input type="file" onchange="app.upload(this)"/>
+		</form>
 		<div class="tool">
 			<ul>
 				<li><a class="rect"><img src="img/rect.png"/></a></li>
@@ -15,6 +18,8 @@
 				<li><a><img src="img/font.png"/></a></li>
 			</ul>
 		</div>
-		<canvas id="demo" width="600px" height="500px" style="border: 1px solid #003366;"></canvas>
+		<canvas id="demo" width="600px" height="500px" style="border: 1px solid #003366;">
+			
+		</canvas>
 	</body>
 </html>

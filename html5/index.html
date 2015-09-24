@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta name="description"
+              content="CSS3, JavaScript and HTML5 as explained by Estelle Weyl">
+        <meta name="keyword" content="CSS3, HTML5, JavaScript">
+		<meta http-equiv="cache-control" content="no-cache" />
+		<!--
+        	mobile 通用
+        	当user-scalable="no" maximum-scale和minimum-scale无效
+        -->
+        <meta name="viewport"
+              content="user-scalable=no, width=device-width, initial-scale=1.0,height=device-height,maximum-scale=0.25,minimum-scale=0.25"/>
+		
+		<!--
+        	特定厂商的meta
+        -->
+        <!--
+        	该标签同样适用于android，标识该web 应用是否以全屏模式运行，在js中可通过window.navigator.standalone获取
+        -->
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <!--
+        	当使用前面的meta启用全屏模式时，状态栏还是显示的，开发者不能将其移除，可以通过控制状态栏的显示样式。可以通过
+        	这个标签来改变其颜色和透明度，ios中的值为:default,black,black-translucent
+        -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        
+        <!--
+        	启用或禁用自动检测web页面上的电话号码
+        -->
+        <meta name="format-detection" content="telephone=no"/>
+		<title></title>
+	</head>
+	<body>
+		<p>
+			"meta有四种属性:charset,http-equiv,content,name"
+			有mobile通用的viewport
+			有特定厂商的meta:
+			apple-mobile-web-app-capable，
+			apple-mobile-web-app-status-bar-style,
+			format-detection
+		</p>
+		<br />
+		<p>
+			打电话:<a href="tel:10086">10086</a>
+			发短信:<a href="sms:10086">10086</a>
+		</p>
+		
+		<form>
+			<p>
+<label for="datetime">datetime: </label>
+<input id="datetime" name="datetime" type="datetime"placeholder="YYYY-MM-DD" 
+min="2010-01-01T00:00Z"max="2011-12-31T23:59Z" required />
+</p>
+<p>
+<label for="dte">datetime: </label>
+<input id="dte" name="dte" type="text" placeholder="YYYY-MM-DDT00:00Z"
+pattern="\d{4}\-\d{2}\-\d{2}T\d\d\:\d\dZ" required />
+</p>
+<label for="month">Month: </label>
+<input id="month" name="month" type="month"placeholder="YYYY-MM" required
+min="2010-01" max="2020-01" step="6"/>
+			<label for="dob">Date of Birth: </label>
+<input id="dob" name="dob" type="date"
+placeholder="YYYY-MM-DD" min="1900-01-01" required />
+			<label for="date">Date: </label>
+<input id="date" name="date" type="date"
+placeholder="YYYY-MM-DD" required />
+			<label for="crange">Range:</label>
+			<input id="crange" type="range" value="1"/>
+			<label for="clr">Color: </label>
+			<input id="clr" name="clr" type="color"placeholder="#000000"
+			pattern="#[0-9A-Fa-f]{6}" required />
+		</form>
+		<object >
+			
+		</object>
+	</body>
+</html>
