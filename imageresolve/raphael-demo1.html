@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="js/raphael-min.js" ></script>
+		<script type="text/javascript">
+		window.onload = function () {
+                var r = Raphael("canvas-1", 640, 480),
+                    angle = 0;
+                while (angle < 360) {
+                    var color = Raphael.getColor();
+                    (function (t, c) {
+                        r.circle(320, 450, 20).attr({stroke: c, fill: c, transform: t, "fill-opacity": .4}).click(function () {
+                            s.animate({transform: t, stroke: c}, 2000, "bounce");
+                        }).mouseover(function () {
+                            this.animate({"fill-opacity": .75}, 500);
+                        }).mouseout(function () {
+                            this.animate({"fill-opacity": .4}, 500);
+                        });
+                    })("r" + angle + " 320 240", color);
+                    angle += 30;
+                }
+                Raphael.getColor.reset();
+                var s = r.set();
+                s.push(r.path("M320,240c-50,100,50,110,0,190").attr({fill: "none", "stroke-width": 2}));
+                s.push(r.circle(320, 450, 20).attr({fill: "none", "stroke-width": 2}));
+                s.push(r.circle(320, 240, 5).attr({fill: "none", "stroke-width": 10}));
+                s.attr({stroke: Raphael.getColor()});
+            };
+		</script>
+		<style>
+			/*body{
+    font-size:12px;
+    background-color:White;
+}
+.cp
+{
+     cursor:pointer;
+}
+ 
+#toolbox
+{
+    position:absolute;
+    top:0;
+    left:0;
+    width:160px;
+    z-index:5;
+    border-top:1px dashed #ccc;
+}
+ 
+#canvas
+{
+    padding:0;
+    margin:0;
+    margin-left:160px;
+    overflow:auto;
+    background-repeat:no-repeat;   
+ }
+ 
+.tb_itm
+{
+    text-align:center;
+    height:32px;
+    background-color:White;
+    border-bottom:1px dashed #ccc;
+    cursor:pointer;
+}
+.tb_itm_cnt
+{
+    width:80px;
+    margin:auto;
+}
+.tb_itm:hover
+{
+    background-color:#918ad8;
+}
+.tb_itm_cnt img,.isReuse
+{
+    display:block;
+    float:left;
+    height:32px;
+    width:32px;
+}
+.tb_itm span
+{
+    display:block;
+    float:left;
+    line-height:32px;
+    vertical-align:middle;
+ }
+.tb_itm_slt
+{
+    background-color:#918ad8;
+}
+ 
+.tbSet_itm
+{
+    text-align:center;
+    height:32px;  
+    background-color:White;
+    border-bottom:1px dashed #ccc;
+}
+ 
+.tbSet_itm span
+{
+     vertical-align:middle;
+     line-height:32px;
+}
+ .tb_itm_span
+{
+    display:block;
+    float:left;
+ }
+ 
+#isReuse
+{
+     margin-top:10px;
+}
+ 
+.itm_save:hover
+{
+    background-color:#918ad8;
+}*/
+		</style>
+	</head>
+	<body>
+		<!--<form id="form1" runat="server">
+        <div id="toolbox">
+        <div class="tb_itm  tb_itm_slt" id="tb_cursor">
+            <div class="tb_itm_cnt"><img alt="光标" src="../JS/Twilight/resources/images/cursor.png" /><span>光标</span></div>
+        </div>
+        <div class="tb_itm" id="tb_position">
+            <div class="tb_itm_cnt"><img alt="案发点" src="../resources/images/camerfile32.png" /><span>案发点</span></div>
+        </div>
+        <div class="tb_itm" id="tb_camera">
+            <div class="tb_itm_cnt"><img alt="监控点" src="../resources/images/camera.png" /><span>监控点</span></div>
+        </div>
+        <div class="tb_itm" id="tb_line">
+            <div class="tb_itm_cnt"><img alt="轨迹线" src="../JS/Twilight/resources/images/arrow_right.png" /><span>轨迹线</span></div>
+        </div>
+        <div class="tb_itm" id="tb_point">
+            <div class="tb_itm_cnt"><img alt="轨迹点" src="../JS/Twilight/resources/images/flag_greed.png" /><span>轨迹点</span></div>
+        </div>
+        <div class="tb_itm" id="tb_phone">
+            <div class="tb_itm_cnt"><img alt="通话中" src="../JS/Twilight/resources/images/phone_sound.png" /><span>通话中</span></div>
+        </div>
+        <div class="tb_itm" id="tb_text">
+            <div class="tb_itm_cnt"><img alt="文字" src="../JS/Twilight/resources/images/text_edit.png" /><span>文字</span></div>
+        </div>
+        <div class="tb_itm" id="tb_del">
+            <div class="tb_itm_cnt"><img alt="删除项" src="../JS/Twilight/resources/images/erase.png" /><span>删除项</span></div>
+        </div>
+        <div class="tb_itm" id="tb_clockwise">
+            <div class="tb_itm_cnt"><img alt="顺时针" src="../JS/Twilight/resources/images/rotate_left.png" /><span>顺时针</span></div>
+        </div>
+        <div class="tb_itm" id="tb_anticwise">
+            <div class="tb_itm_cnt"><img alt="逆时针" src="../JS/Twilight/resources/images/rotate_right.png" /><span>逆时针</span></div>
+        </div>
+        <div id="btSet">
+            <div class="tbSet_itm">           
+                <div class="tb_itm_cnt"><div class="isReuse"><input id="isReuse" type="checkbox" /></div><span class="tb_itm_span">连续操作</span></div>
+            </div>
+            <div class="tbSet_itm cp itm_save" id="dataSave">
+                <div class="tb_itm_cnt"><img alt="保存数据" src="../JS/Twilight/resources/images/save.png" /><span class="tb_itm_span">保存数据</span></div>
+            </div>
+            <div class="tbSet_itm"><span>方向键可作轻微调整</span></div>
+        </div>
+    </div>
+    <img id="imgHidden" alt="" src="" style="display:none;"/>
+    <div id="canvas"></div>
+    </form>-->
+	<div id="canvas-1"></div>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			#grad1{
+				/*Really old webkit
+				background-image: -webkit-gradient(linear);*/
+				/*Android,ios bb*/
+				background-image: -webkit-linear-gradient(#000,#FFF);
+				/*IOS7,chr26+,IE10+,FF16+,O12.1+
+				background-image: linear-gradient();*/
+				width: 100px;
+				height: 60px;
+			}
+			
+			#grad2{
+				width: 100px;
+				height: 60px;
+				background-image: -webkit-linear-gradient(top,#000,#fff);
+			}
+			
+			#grad3{
+				width: 100px;
+				height: 60px;
+				background-image: -webkit-linear-gradient(270deg,#000 50%,#fff 90%);
+			}
+			#grad4{
+				width: 100px;
+				height: 60px;
+				background-image: linear-gradient(#000,#fff);
+			}
+			#grad5{
+				width: 100px;
+				height: 60px;
+				/*top bottom right left*/
+				background-image: linear-gradient(to bottom right,#000,#fff);
+			}
+			#grad6{
+				width: 100px;
+				height: 60px;
+				background-image: linear-gradient(180deg,#000,#fff);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="grad1">
+			
+		</div>
+		<div id="grad2">
+			
+		</div>
+		<div id="grad3">
+			
+		</div>
+		<div id="grad4">
+			
+		</div>
+		<div id="grad5">
+			
+		</div>
+		<div id="grad6">
+			
+		</div>
+		
+	</body>
+</html>

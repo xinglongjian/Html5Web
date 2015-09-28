@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+		
+			var testweb={};
+			testweb.onError=function(tx,error){
+				console.log('Error:'+error.message);
+			}
+			testweb.createTable=function(){
+				if(testweb.db){
+					testweb.db.transaction(function(tx){
+						tx.executeSql("create table highscoresTable (id REAL UNIQUE,name TEXT,score NUMBER,date DATE)",[],function(tx){
+							console.log('highscore table created.');
+						},testweb.onError);
+					});
+				}
+			}
+			var dbsize=5*1024*1024;//5mb
+			function createDb(){
+				//在使用webdb之前需要检验一下
+				if(!testweb.db){
+					if(window.openDatabase){
+					console.log("可以使用Web SQL");
+					testweb.db=window.openDatabase('mytestdb','1.0','testdb',dbsize);
+					testweb.createTable();
+				   }
+				}
+				
+			}
+			
+			function saveHighScore(){
+				if(testweb.db){
+					testweb.db.transaction(function(tx){
+						tx.executeSql("INSERT INTO highscoresTable(name,score,date) values(?,?,?)",['test',90,new Date()],function(tx,results){
+							console.log('highscore inserted!');
+						},testweb.onError);
+					});
+				}
+			}
+			
+			function getHighScore(){
+				if(testweb.db){
+					testweb.db.transaction(function(tx){
+						tx.executeSql("select score,name,date from highscoresTable",[],function(tx,result){
+							for(var i=0;i<result.rows.length;i++){
+								console.log('name='+result.rows.item(i)['name'])
+							}
+						},testweb.onError);
+					});
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<p>与Web数据库交互的API调用时异步的，确保用户界面不会锁住。
+			因为数据库交互会在多个窗口同时发生，API支持事务。与SQL类似，Web SQL有几种方法和属性。</p>
+		<ul>
+			<li>window.openDatabase(database_name,database_version,display_name,db_size);该方法创建一个database对象。
+			数据库在访问之前首先需要打开。</li>
+			<li>database.transaction(transaction_callback,error_callback,success_callback);
+			该方法是数据库对象的，不是window的。
+			</li>
+			<li>transaction.executeSQL(sql_statement,arguments,sqlstatement_callback,sqlstatement_errorcallback);</li>
+		</ul>
+		<label for="name">名称:</label>
+		<input type="text" id="name" name="name" /><br />
+		<label for="age">年龄:</label>
+		<input type="number" id="age" name="age"/><br />
+		<button onclick="createDb()">创建数据库并建表</button>
+		
+		<button onclick="saveHighScore()">存储高分</button>
+		
+		<button onclick="getHighScore()">获取高分</button>
+	</body>
+</html>

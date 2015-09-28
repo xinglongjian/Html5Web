@@ -3,8 +3,22 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+	</head>
+	<body>
+		<label for="skey">key:</label>
+		<input type="text" name="skey" id="skey"/><br />
+		<label for="svalue">Value:</label>
+		<input type="text" name="svalue" id="svalue"/><br />
+		<button onclick="store1()">存储</button><br />
+		<button onclick="gettest()">获取</button><br />
+		<button onclick="removetest()">移除</button><br />
+		<button onclick="cleartest()">清空</button><br />
+		<button onclick="testlength()">长度</button>
+		<p>LocalStorage是同步操作，Web数据库是异步操作，不会阻塞UI</p>
 		<script type="text/javascript">
-		
+		(function(){
+			//alert(navigator.onLine);//检测当前浏览器是否在线
+		})();
 			function store1(){
 				var skey=document.getElementById("skey").value;
 				var svalue=document.getElementById("svalue").value;
@@ -28,16 +42,5 @@
 				console.log('session='+sessionStorage.length);
 			}
 		</script>
-	</head>
-	<body>
-		<label for="skey">key:</label>
-		<input type="text" name="skey" id="skey"/><br />
-		<label for="svalue">Value:</label>
-		<input type="text" name="svalue" id="svalue"/><br />
-		<button onclick="store1()">存储</button><br />
-		<button onclick="gettest()">获取</button><br />
-		<button onclick="removetest()">移除</button><br />
-		<button onclick="cleartest()">清空</button><br />
-		<button onclick="testlength()">长度</button>
 	</body>
 </html>

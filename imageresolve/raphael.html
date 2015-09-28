@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="js/raphael-min.js" ></script>
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript">
+		
+		
+		
+		window.onload = function () {
+			var r = Raphael("canvas-1", 640, 480);
+			
+			$("#tb_nextone").on("click",function(){
+				r.clear();
+				r.image("img/map1.jpg",0,0,640,480);
+			});
+			
+			
+			
+                
+            r.image("img/map.jpg",0,0,640,480);
+            r.text(200,20,"I bought five\n copies!").attr({"font-size":16,"text-anchor":"start"});
+                //r.circle(250,150,100).attr({fill:"#ff0000",stroke:"#000099","stroke-width":3});
+                //r.path("M30,9.493c-0.771,0.343-1.602,0.574-2.473,0.678c0.89-0.533,1.562-1.376,1.893-2.382c-0.832,0.493-1.753,0.852-2.734,1.044c-0.785-0.837-1.902-1.359-3.142-1.359c-2.377,0-4.306,1.928-4.306,4.306c0,0.337,0.039,0.666,0.112,0.979c-3.578-0.18-6.75-1.894-8.874-4.499c-0.371,0.636-0.583,1.375-0.583,2.165c0,1.494,0.76,2.812,1.915,3.583c-0.706-0.022-1.37-0.216-1.95-0.538c0,0.018,0,0.036,0,0.053c0,2.086,1.484,3.829,3.454,4.222c-0.361,0.099-0.741,0.147-1.134,0.147c-0.278,0-0.547-0.023-0.81-0.076c0.548,1.711,2.138,2.955,4.022,2.99c-1.474,1.146-3.33,1.842-5.347,1.842c-0.348,0-0.69-0.021-1.027-0.062c1.905,1.225,4.168,1.938,6.6,1.938c7.919,0,12.248-6.562,12.248-12.25c0-0.187-0.002-0.372-0.01-0.557C25.186,11.115,25.915,10.356,26.492,9.493").attr({fill: "#000", stroke: "none"});
+            };
+		</script>
+		<style>
+			body{
+    font-size:12px;
+    background-color:White;
+}
+.cp
+{
+     cursor:pointer;
+}
+ 
+#toolbox
+{
+    position:absolute;
+    top:0;
+    left:0;
+    width:160px;
+    z-index:5;
+    border-top:1px dashed #ccc;
+    margin-top: 8px;
+}
+ 
+#canvas
+{
+    padding:0;
+    margin:0;
+    margin-left:160px;
+    overflow:auto;
+    background-repeat:no-repeat;   
+ }
+ 
+.tb_itm
+{
+    text-align:center;
+    height:32px;
+    background-color:White;
+    border-bottom:1px dashed #ccc;
+    cursor:pointer;
+}
+.tb_itm_cnt
+{
+    width:80px;
+    margin:auto;
+}
+.tb_itm:hover
+{
+    background-color:#918ad8;
+}
+.tb_itm_cnt img,.isReuse
+{
+    display:block;
+    float:left;
+    height:32px;
+    width:32px;
+}
+.tb_itm span
+{
+    display:block;
+    float:left;
+    line-height:32px;
+    vertical-align:middle;
+ }
+.tb_itm_slt
+{
+    background-color:#918ad8;
+}
+ 
+.tbSet_itm
+{
+    text-align:center;
+    height:32px;  
+    background-color:White;
+    border-bottom:1px dashed #ccc;
+}
+ 
+.tbSet_itm span
+{
+     vertical-align:middle;
+     line-height:32px;
+}
+ .tb_itm_span
+{
+    display:block;
+    float:left;
+ }
+ 
+#isReuse
+{
+     margin-top:10px;
+}
+ 
+.itm_save:hover
+{
+    background-color:#918ad8;
+}
+		</style>
+	</head>
+	<body>
+        <div id="toolbox">
+        <div class="tb_itm  tb_itm_slt" id="tb_cursor">
+            <div class="tb_itm_cnt"><img alt="光标" src="../JS/Twilight/resources/images/cursor.png" /><span>光标</span></div>
+        </div>
+        <div class="tb_itm" id="tb_position">
+            <div class="tb_itm_cnt"><img alt="矩形" src="../resources/images/camerfile32.png" /><span>矩形</span></div>
+        </div>
+        <div class="tb_itm" id="tb_camera">
+            <div class="tb_itm_cnt"><img alt="圆形" src="../resources/images/camera.png" /><span>圆形</span></div>
+        </div>
+        <div class="tb_itm" id="tb_line">
+            <div class="tb_itm_cnt"><img alt="线条" src="../JS/Twilight/resources/images/arrow_right.png" /><span>轨迹线</span></div>
+        </div>
+        <div class="tb_itm" id="tb_point">
+            <div class="tb_itm_cnt"><img alt="轨迹点" src="../JS/Twilight/resources/images/flag_greed.png" /><span>轨迹点</span></div>
+        </div>
+        <div class="tb_itm" id="tb_phone">
+            <div class="tb_itm_cnt"><img alt="通话中" src="../JS/Twilight/resources/images/phone_sound.png" /><span>通话中</span></div>
+        </div>
+        <div class="tb_itm" id="tb_text">
+            <div class="tb_itm_cnt"><img alt="文字" src="../JS/Twilight/resources/images/text_edit.png" /><span>文字</span></div>
+        </div>
+        <div class="tb_itm" id="tb_del">
+            <div class="tb_itm_cnt"><img alt="删除项" src="../JS/Twilight/resources/images/erase.png" /><span>删除项</span></div>
+        </div>
+        <div class="tb_itm" id="tb_clockwise">
+            <div class="tb_itm_cnt"><img alt="顺时针" src="../JS/Twilight/resources/images/rotate_left.png" /><span>顺时针</span></div>
+        </div>
+        <div class="tb_itm" id="tb_anticwise">
+            <div class="tb_itm_cnt"><img alt="逆时针" src="../JS/Twilight/resources/images/rotate_right.png" /><span>逆时针</span></div>
+        </div>
+        <div id="btSet">
+            <div class="tbSet_itm">           
+                <div class="tb_itm_cnt"><div class="isReuse"><input id="isReuse" type="checkbox" /></div><span class="tb_itm_span">连续操作</span></div>
+            </div>
+            <div class="tbSet_itm cp itm_save" id="dataSave">
+                <div class="tb_itm_cnt"><img alt="保存数据" src="../JS/Twilight/resources/images/save.png" /><span class="tb_itm_span">保存数据</span></div>
+            </div>
+            <div class="tbSet_itm"><span>方向键可作轻微调整</span></div>
+        </div>
+        <div class="tb_itm" id="tb_lastone">
+            <div class="tb_itm_cnt"><img alt="上一张" src="../JS/Twilight/resources/images/rotate_right.png" /><span>上一张</span></div>
+        </div>
+        <div class="tb_itm" id="tb_nextone">
+            <div class="tb_itm_cnt"><img alt="下一张" src="../JS/Twilight/resources/images/rotate_right.png" /><span>下一张</span></div>
+        </div>
+    </div>
+    <img id="imgHidden" alt="" src="" style="display:none;"/>
+	<div id="canvas-1" style="border: 1px solid #000000;margin-left: 160px;"></div>
+	</body>
+</html>
