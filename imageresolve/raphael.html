@@ -5,6 +5,9 @@
 		<title></title>
 		<script type="text/javascript" src="js/raphael-min.js" ></script>
 		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/rgbcolor.js" ></script>
+		<script type="text/javascript" src="js/canvg.js" ></script>
+		<script type="text/javascript" src="js/canvas2image.js" ></script>
 		<script type="text/javascript">
 		
 		
@@ -21,10 +24,121 @@
 			
                 
             r.image("img/map.jpg",0,0,640,480);
-            r.text(200,20,"I bought five\n copies!").attr({"font-size":16,"text-anchor":"start"});
+            //r.text(200,20,"I bought five\n copies!").attr({"font-size":16,"text-anchor":"start"});
                 //r.circle(250,150,100).attr({fill:"#ff0000",stroke:"#000099","stroke-width":3});
                 //r.path("M30,9.493c-0.771,0.343-1.602,0.574-2.473,0.678c0.89-0.533,1.562-1.376,1.893-2.382c-0.832,0.493-1.753,0.852-2.734,1.044c-0.785-0.837-1.902-1.359-3.142-1.359c-2.377,0-4.306,1.928-4.306,4.306c0,0.337,0.039,0.666,0.112,0.979c-3.578-0.18-6.75-1.894-8.874-4.499c-0.371,0.636-0.583,1.375-0.583,2.165c0,1.494,0.76,2.812,1.915,3.583c-0.706-0.022-1.37-0.216-1.95-0.538c0,0.018,0,0.036,0,0.053c0,2.086,1.484,3.829,3.454,4.222c-0.361,0.099-0.741,0.147-1.134,0.147c-0.278,0-0.547-0.023-0.81-0.076c0.548,1.711,2.138,2.955,4.022,2.99c-1.474,1.146-3.33,1.842-5.347,1.842c-0.348,0-0.69-0.021-1.027-0.062c1.905,1.225,4.168,1.938,6.6,1.938c7.919,0,12.248-6.562,12.248-12.25c0-0.187-0.002-0.372-0.01-0.557C25.186,11.115,25.915,10.356,26.492,9.493").attr({fill: "#000", stroke: "none"});
-            };
+            
+	        var rec=r.rect(200,100,100,100);	
+	        rec.attr('x',400);//修改x坐标的值
+	        
+	        var r1=r.rect(20,40,80,40).attr("fill","red");
+	        var r2=r.rect(100,40,80,40).attr("fill","blue");
+	        var r3=r.rect(180,40,80,40).attr("fill","green");
+	        
+	        r2.attr("transform","R45");
+	        r3.attr("transform","R90,140,80");
+	        r1.attr("transform","T50,60");
+	        r2.attr("transform","S0.5,0.5");
+	        r2.attr("transform","");//还原
+	        //点击事件
+	        r1.click(function(e){
+	        	this.attr("fill","blue");
+	        	console.log(this.attrs.fill);
+	        	console.log(this.type);
+	        });
+	        //鼠标经过事件
+	        r1.mouseover(function(e){
+	        	this.attr("fill","green");
+	        }).mouseout(function(e){
+	        	this.attr("fill","red");
+	        });
+	        //拖动
+	        var c=r.circle(250,150,20).attr("fill","red");
+	        
+	        function dragstart(x,y,e){
+	        	this.current_transform=this.transform();
+	        	this.attr("fill","orange");
+	        	this.attr("cursor","move");
+	        }
+	        function dragmove(dx,dy,x,y,e){
+                //=================
+                this.transform(this.current_transform+'T'+dx+','+dy);
+	        }
+	        function dragend(e){
+	            this.current_transform=this.transform();
+	            this.attr("fill","yellow");
+	        }
+	        r1.drag(dragmove,dragstart,dragend);
+	        
+	        //集合拖动
+	        var dict=r.set();
+	        dict.push(r.circle(22, 58, 5).attr("fill", "#000"));
+            dict.push(r.circle(58, 22, 5).attr("fill", "#000"));
+            dict.push(r.circle(40, 40, 5).attr("fill", "#000"));
+            dict.push(r.circle(22, 22, 5).attr("fill", "#000"));
+            dict.push(r.circle(58, 59, 5).attr("fill", "#000"));
+	        
+	        dict.data("myset",dict);
+	        
+	        dict.drag(function(dx,dy,x,y,e){
+	        	//dragmove
+	        	var myset=this.data("myset");
+	        	myset.transform(this.data("mytransform")+"T"+dx+","+dy);
+	        	
+	        },function(x,y,e){
+	        	//dragstart
+	        	var myset=this.data("myset");
+	        	myset.attr("cursor","move");
+	        	myset.data("mytransform",this.transform());
+	        },function(e){
+	        	var myset=this.data("myset");
+	        	myset.data("mytransform",this.transform());
+	        });
+	        //使用path绘制复杂图形
+	        var d = "M 10,90 L 60,90 L 10,180 L 60,180z";
+            var mark = r.path(d).attr("stroke-width",4);
+            var d1 = "M10,30h50l-50,50H60";
+            r.path(d1);
+	        mark.drag(dragmove,dragstart,dragend);
+	        
+	        //动画
+	        c.click(function(){
+	        	var anim=Raphael.animation({cx:400,cy:400,fill:"blue"},1000).delay(1000);
+	            c.animate(anim.repeat(2));
+	        });
+	        
+	        
+	        //点击按钮事件
+	        function make(){
+			alert("dd");
+		    }
+		    document.getElementById("clickme").onclick=make;
+		    
+		    
+		    //保存图片
+		    function saveToImage(){
+		    	 var container = $('#canvas-1'),
+                // Canvg requires trimmed content
+                content = container.html(),
+                canvastemp = document.getElementById('canvastemp');
+
+                // Draw svg on canvas
+                canvg(canvastemp, content);
+
+                // Change img be SVG representation
+                var theImage = canvastemp.toDataURL('image/png');
+                
+                //var w=window.open('about:blank','image from canvas'); 
+                //w.document.write("<img src='"+theImage+"' alt='from canvas'/>"); 
+                $("#imgs").append(Canvas2Image.convertToImage(canvastemp,640,480,'png'));
+                //$('#imgHidden').attr('src', theImage);
+		    	//var image = canvastemp.toDataURL('image/png').replace('image/png', 'image/octet-stream;Content-Disposition:attachment;filename=foobar.png'); 
+                //window.location.href=image;
+		    }
+		    document.getElementById("dataSave").onclick=saveToImage;
+		};
+		
+		
 		</script>
 		<style>
 			body{
@@ -55,6 +169,12 @@
     overflow:auto;
     background-repeat:no-repeat;   
  }
+ #imgHidden{
+ 	padding:0;
+    margin:0;
+    margin-left:160px;
+ }
+ 
  
 .tb_itm
 {
@@ -125,52 +245,63 @@
 	<body>
         <div id="toolbox">
         <div class="tb_itm  tb_itm_slt" id="tb_cursor">
-            <div class="tb_itm_cnt"><img alt="光标" src="../JS/Twilight/resources/images/cursor.png" /><span>光标</span></div>
+            <div class="tb_itm_cnt"><img alt="光标" src="" /><span>光标</span></div>
         </div>
         <div class="tb_itm" id="tb_position">
-            <div class="tb_itm_cnt"><img alt="矩形" src="../resources/images/camerfile32.png" /><span>矩形</span></div>
+            <div class="tb_itm_cnt"><img alt="矩形" src="" /><span>矩形</span></div>
         </div>
         <div class="tb_itm" id="tb_camera">
-            <div class="tb_itm_cnt"><img alt="圆形" src="../resources/images/camera.png" /><span>圆形</span></div>
+            <div class="tb_itm_cnt"><img alt="圆形" src="" /><span>圆形</span></div>
         </div>
         <div class="tb_itm" id="tb_line">
-            <div class="tb_itm_cnt"><img alt="线条" src="../JS/Twilight/resources/images/arrow_right.png" /><span>轨迹线</span></div>
+            <div class="tb_itm_cnt"><img alt="线条" src="" /><span>轨迹线</span></div>
         </div>
         <div class="tb_itm" id="tb_point">
-            <div class="tb_itm_cnt"><img alt="轨迹点" src="../JS/Twilight/resources/images/flag_greed.png" /><span>轨迹点</span></div>
+            <div class="tb_itm_cnt"><img alt="轨迹点" src="" /><span>轨迹点</span></div>
         </div>
         <div class="tb_itm" id="tb_phone">
-            <div class="tb_itm_cnt"><img alt="通话中" src="../JS/Twilight/resources/images/phone_sound.png" /><span>通话中</span></div>
+            <div class="tb_itm_cnt"><img alt="通话中" src="" /><span>通话中</span></div>
         </div>
         <div class="tb_itm" id="tb_text">
-            <div class="tb_itm_cnt"><img alt="文字" src="../JS/Twilight/resources/images/text_edit.png" /><span>文字</span></div>
+            <div class="tb_itm_cnt"><img alt="文字" src="" /><span>文字</span></div>
         </div>
         <div class="tb_itm" id="tb_del">
-            <div class="tb_itm_cnt"><img alt="删除项" src="../JS/Twilight/resources/images/erase.png" /><span>删除项</span></div>
+            <div class="tb_itm_cnt"><img alt="删除项" src="" /><span>删除项</span></div>
         </div>
         <div class="tb_itm" id="tb_clockwise">
-            <div class="tb_itm_cnt"><img alt="顺时针" src="../JS/Twilight/resources/images/rotate_left.png" /><span>顺时针</span></div>
+            <div class="tb_itm_cnt"><img alt="顺时针" src="" /><span>顺时针</span></div>
         </div>
         <div class="tb_itm" id="tb_anticwise">
-            <div class="tb_itm_cnt"><img alt="逆时针" src="../JS/Twilight/resources/images/rotate_right.png" /><span>逆时针</span></div>
+            <div class="tb_itm_cnt"><img alt="逆时针" src="" /><span>逆时针</span></div>
         </div>
         <div id="btSet">
             <div class="tbSet_itm">           
                 <div class="tb_itm_cnt"><div class="isReuse"><input id="isReuse" type="checkbox" /></div><span class="tb_itm_span">连续操作</span></div>
             </div>
             <div class="tbSet_itm cp itm_save" id="dataSave">
-                <div class="tb_itm_cnt"><img alt="保存数据" src="../JS/Twilight/resources/images/save.png" /><span class="tb_itm_span">保存数据</span></div>
+                <div class="tb_itm_cnt"><img alt="保存数据" src="" /><span class="tb_itm_span">保存数据</span></div>
             </div>
             <div class="tbSet_itm"><span>方向键可作轻微调整</span></div>
         </div>
         <div class="tb_itm" id="tb_lastone">
-            <div class="tb_itm_cnt"><img alt="上一张" src="../JS/Twilight/resources/images/rotate_right.png" /><span>上一张</span></div>
+            <div class="tb_itm_cnt"><img alt="上一张" src="" /><span>上一张</span></div>
         </div>
         <div class="tb_itm" id="tb_nextone">
-            <div class="tb_itm_cnt"><img alt="下一张" src="../JS/Twilight/resources/images/rotate_right.png" /><span>下一张</span></div>
+            <div class="tb_itm_cnt"><img alt="下一张" src="" /><span>下一张</span></div>
         </div>
+        <div  class="tb_itm" id="tb_input">
+        	<input id="message" style="width: 100px" value="Raphael is great"/>
+        </div>
+        <div class="tb_itm" id="tb_button">
+        	<input id="clickme" type="button" value="braille-ify" />
+        </div>
+        
     </div>
-    <img id="imgHidden" alt="" src="" style="display:none;"/>
+    
+    <div id="imgs">
+    	
+    </div>
+    <canvas id="canvastemp" style="display: none;width: 640px;height: 480px;"></canvas>
 	<div id="canvas-1" style="border: 1px solid #000000;margin-left: 160px;"></div>
 	</body>
 </html>
