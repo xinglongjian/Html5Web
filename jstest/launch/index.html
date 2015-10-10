@@ -4,7 +4,12 @@
 		<meta charset="utf-8">
 		<title></title>
 		<script type="text/javascript">
+		//http://www.javatang.com/archives/2015/04/26/34591223.html
 		 function startApp(){
+		 	var isChrome = window.google && window.chrome;
+            if(!isChrome){
+               alert("请使用chrome浏览器");
+            }
 		 	var evt=document.createEvent("CustomEvent");
 		 	evt.initCustomEvent('myCustomEvent',true,false,'im information');
 		 	//fire the event
