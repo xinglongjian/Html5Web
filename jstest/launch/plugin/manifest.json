@@ -1,0 +1,18 @@
+/*xxx填入想要载入的网址*/
+{
+  "name":"FastRun",
+  "version":"0.0.1",
+  "description":"Launch App",
+  "background":{"scripts":["background.js"]},
+  "permissions":[
+      "nativeMessaging",
+      "tabs",
+      "http://127.0.0.1:8020/*"
+  ],
+  "content_scripts":[{
+      "matches":["http://127.0.0.1:8020/*"],
+      "js":["content.js"]
+  }],
+  "minimum_chrome_version":"6.0.0.0",
+  "manifest_version":2
+}

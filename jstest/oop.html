@@ -21,6 +21,7 @@
 			if(i>2)
 			  console.log('');
 			//判断某个变量是否存在
+			var thisvar='d';
 			if(thisvar)
 			  console.log("this var is exist");
 			//更好地方式是使用typeof
@@ -42,8 +43,29 @@
 				this.name="name";
 			}
 			var n=new Aum();
-			alert(n.name);
+			//alert(n.name);
+			//测试两个闭包
+			var name="the Window";
+			var object={
+				name:"My Object",
+				getNameFun:function(){
+					return function(){
+						return this.name;//this =window
+					}
+				}
+			};
+			alert(object.getNameFun()());//the Window
 			
+			var object={
+				name:"My Object",
+				getNameFun:function(){
+					var that=this;  //this= object
+					return function(){
+						return that.name;
+					}
+				}
+			};
+			alert(object.getNameFun()());//My Object
 		</script>
 	</head>
 	<body>
@@ -181,7 +203,9 @@
 		var n=f();<br />
 		n();//b<br />
 		
-		(闭包:在全局范围内访问函数的私有变量)
+		(闭包:在专业文献中，对闭包的定义很抽象，闭包就是能够在全局范围内访问函数的私有变量的函数，就是定义在一个函数内部的函数，是连接函数内部和外部的桥梁)
+		闭包的用途：1，可以读取函数内部的变量，2，就是让这些变量始终保持在内存中
+		(链式作用域:子对象会一级一级的向上寻找所有父对象的变量，所以，父对象的所有变量，对子对象都是可见的，反之不成立。)
 		
 	</code>
 	

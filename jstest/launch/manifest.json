@@ -1,0 +1,11 @@
+/**
+ * 该文件存在本地目录里，如c:/native，后面要用到
+ * allowed_origins中的字符串是插件的id，可以在安装插件后从chrome插件里看到
+ */
+{
+   "name":"com.my_company.my_application",
+   "description":"Chrome sent message to native app",
+   "path":"C:\\Windows\\System32\\notepad.exe",
+   "type":"stdio",
+   "allowed_origins":["chrome-extension://knbpcggmnmkcbkmjjpilidobjmichfll/"]
+}
