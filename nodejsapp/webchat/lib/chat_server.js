@@ -1,4 +1,4 @@
-var socketio=require('socket.io');
+var socketio=require('socket.io')();//new Server
 var io;
 var guestNumber=1;
 var nickNames={};
@@ -39,7 +39,9 @@ function joinRoom(socket,room){
 	socket.broadcast.to(room).emit('message',{
 		text:nickNames['socket.id']+' has joined '+room+'.'
 	});
-	var userInRoom=io.sockets.clients(room);
+	var roomtemp=io.sockets.adapter.rooms[room];
+	var userInRoom=Object.keys(roomtemp).length;
+	console.log('userInRoom='+userInRoom);
 	if(userInRoom.length>1){
 		var usersInRoomSummary = 'Users currently in ' + room + ': ';
 	    for (var index in usersInRoom) {
