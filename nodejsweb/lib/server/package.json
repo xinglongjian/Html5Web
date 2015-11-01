@@ -1,0 +1,9 @@
+{
+  "name": "server module",
+  "version": "1.0.0",
+  "description": "nodejsweb base on express",
+  "main": "server.js",
+  "author": "xinglongjian",
+  "license": "ISC"
+  
+}
