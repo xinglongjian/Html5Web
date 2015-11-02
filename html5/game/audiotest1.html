@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<audio controls="controls" id="myaudio">
+   <source src="xxx.mp3"/>
+</audio>
+
+<script type="text/javascript">
+	var myaudio=document.getElementById('myaudio');
+	document.onkeydown=function(e){
+		if(e.keyCode==83){
+			myaudio.pause();//key pressed was S
+		}else if(e.keyCode==80){
+			myaudio.play();//key pressed was P
+		}
+	}
+</script>
+</body>
+</html>
