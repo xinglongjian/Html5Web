@@ -65,15 +65,21 @@ var jewel=(function(){
 		    $=dom.$,
 		    activeScreen=$("#game .screen.active")[0],
 		    screen=$("#"+screenId)[0];
+		if(!jewel.screens[screenId]){
+			alert("this module is not implemented yet!");
+			return;
+		}
 		if(activeScreen){
 			dom.removeClass(activeScreen,"active");
 		}
 		dom.addClass(screen,"active");
+		jewel.screens[screenId].run();
 	}
 	
 	return {
 		load:load,
 		setup:setup,
-		showScreen:showScreen
+		showScreen:showScreen,
+		screens:{}
 	}
 })();

@@ -1,0 +1,8 @@
+1、viewport 参数
+  <meta name='viewport' content='width=device-width'/>
+  width:device-width
+  height:device-height
+  user-scalable:yes|no
+  initial-scale:number
+  maximum-scale:number|no
+  minimum-scale:number|no
