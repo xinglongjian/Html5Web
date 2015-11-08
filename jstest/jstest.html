@@ -4,50 +4,109 @@
 		<meta charset="utf-8">
 		<title></title>
 		<script type="text/javascript">
+		/**
+ * 移除指定索引的元素
+ */
+Array.prototype.removeXXindex=function(dx)
+{
+	if(isNaN(dx)||dx>this.length){return false;}
+	for(var i=0,n=0;i<this.length;i++)
+	{
+	    if(this[i]!=this[dx])
+	    {
+	        this[n++]=this[i]
+	    }
+	}
+	this.length-=1
+}
+
+	 
+
+//在数组中获取指定值的元素索引
+Array.prototype.getIndexByValue= function(value)
+{
+	var index = -1;
+	for (var i = 0; i < this.length; i++)
+	{
+	    if (this[i] == value)
+	    {
+	        index = i;
+	        break;
+	    }
+	}
+	return index;
+}
+
+//var str='5';
+//var arr=str.split(',');
+//if(arr.getIndexByValue('5')!=-1){
+//	alert('d');
+//}else{
+//	alert('s');
+//}
+
+
+//			var str2="3,5,6";
+//			alert(str2.replace(/,/g,"-"));
 			
-			var str="3-15,11-20";
-			var arr=str.split("-");
-			var values=[];
-			var rege=new RegExp("^[0-9]*$");
-			var flag=true;
-			var last=0;
-			for(var i=0;i<arr.length;i++){
-				if(arr[i].indexOf(',')!=-1){
-					var temps=arr[i].split(',');
-					for(var j=0;j<temps.length;j++){
-						if(!rege.test(temps[j])){
-							console.log('请输入数字');
-							flag=false;
-							break;
-						}
-						if(parseInt(temps[j])<=parseInt(last)){
-							console.log('请输入合适数字');
-							flag=false;
-							break;
-						}
-						last=temps[j];
-						values.push(temps[j]);
-					}
-					if(!flag){
-						break;
-					}
-				}else{
-					if(!rege.test(arr[i])){
-					   console.log('请输入数字');
-					   flag=false;
-					   break;
-				    }
-					if(parseInt(arr[i])<=parseInt(last)){
-						console.log('请输入合适数字');
-						flag=false;
-						break;
-					}
-					last=arr[i];
-				    values.push(arr[i]);
+			var arr=[];
+			var temp={
+				'name':'zheng',
+				'value':'age'
 				}
+			arr.push(temp);
+			var str=JSON.stringify(null);
+			var obj=JSON.parse(str);
+			localStorage.setItem('key',str);
+			var s=localStorage.getItem('ls_mf_station');
+			if(s){
+				var a=JSON.parse(s);
+				console.log(a[4]);
 				
 			}
-			console.log(values);
+//			
+//			var str="3-15,11-20";
+//			var arr=str.split("-");
+//			var values=[];
+//			var rege=new RegExp("^[0-9]*$");
+//			var flag=true;
+//			var last=0;
+//			for(var i=0;i<arr.length;i++){
+//				if(arr[i].indexOf(',')!=-1){
+//					var temps=arr[i].split(',');
+//					for(var j=0;j<temps.length;j++){
+//						if(!rege.test(temps[j])){
+//							console.log('请输入数字');
+//							flag=false;
+//							break;
+//						}
+//						if(parseInt(temps[j])<=parseInt(last)){
+//							console.log('请输入合适数字');
+//							flag=false;
+//							break;
+//						}
+//						last=temps[j];
+//						values.push(temps[j]);
+//					}
+//					if(!flag){
+//						break;
+//					}
+//				}else{
+//					if(!rege.test(arr[i])){
+//					   console.log('请输入数字');
+//					   flag=false;
+//					   break;
+//				    }
+//					if(parseInt(arr[i])<=parseInt(last)){
+//						console.log('请输入合适数字');
+//						flag=false;
+//						break;
+//					}
+//					last=arr[i];
+//				    values.push(arr[i]);
+//				}
+//				
+//			}
 		</script>
 	</head>
 	<body>
