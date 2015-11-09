@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>本地文件API</title>
+	</head>
+	<body>
+		<h3>参考资料</h3>
+		<ul>
+			<li><a href="https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications">https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications</a></li>
+		</ul>
+        <hr />
+        
+        <form>
+        	<!--
+            	作者：xinglongjian@qq.com
+            	时间：2015-11-09
+            	描述：multiple 可以选择多个文件
+            -->
+            <p>通过点击获取按钮获取选择的文件，该可以选择多个文件</p>
+        	<input type="file" id="input1" multiple="multiple"/>
+        	<button type="button" id="getbtn1" onclick="">获取</button>
+        </form>
+        <hr />
+         <form>
+            <p>自动处理获取按钮获取选择的文件，该可以选择多个文件，通过onchange事件</p>
+        	<input type="file" id="input2" multiple="multiple"/>
+            <div id="preview"></div>
+         </form>
+        <hr />
+        
+        
+        <script type="text/javascript">
+        	(function(){
+        		
+        		var getbtn1=document.getElementById("getbtn1");
+        		getbtn1.addEventListener('click',function(){
+        			var fileInput=document.getElementById('input1');
+        			var files=fileInput.files;
+        			var file;
+        			for(var i=0;i<files.length;i++){
+        				file=files.item(i);
+        				//or
+        				//file=files[i];
+        				console.log("name="+file.name);
+        				console.log("size="+file.size);
+        				console.log("type="+file.type);
+        			}
+        		});
+        		
+        		//==========================================
+        		function handleFile(){
+        			var files=this.files;
+        			for(var i=0;i<files.length;i++){
+        				var file=files[i];
+        				var imageType=/^image\//;
+        				
+        				if(!imageType.test(file.type)){
+        					continue;
+        				}
+        				var preview=document.getElementById("preview");
+        				var img=document.createElement("img");
+        				img.classList.add("obj");
+        				img.file=file;
+        				preview.appendChild(img);
+        				
+        				var reader=new FileReader();
+        				reader.onload=(function(aImg){
+        					return function(e){
+        						aImg.src=e.target.result;
+        					};
+        				})(img);
+        				reader.readAsDataURL(file);
+        			}
+        		}
+        		
+        		var input2=document.getElementById("input2");
+        		input2.addEventListener('change',handleFile,false);
+        	})();
+        </script>
+	</body>
+</html>

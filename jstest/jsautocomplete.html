@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Js自动过滤</title>
+		<link href="css/jquery-ui-1.11.4.css" />
+		<script src="js/jquery-1.10.2.js" type="text/javascript"></script>
+		<script src="js/jquery-ui.1.11.4.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<h3>参考资料1</h3>
+		<ul>
+			<li><a href="http://www.runoob.com/jqueryui/api-autocomplete.html">Jquery UI autocomplete</a></li>
+		</ul>
+		<hr />
+		<label for="autotest1">自动完成(单)：</label>
+		<input id="autotest1"/>
+		<input type="hidden" id="project-id">
+        <p id="project-description"></p>
+		<hr />
+		<div class="ui-widget">
+		   <label for="autotest2">自动完成(多)：</label>
+		   <input id="autotest2"/>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var projects = [
+         {
+        value: "jquery",
+        label: "jQuery",
+        desc: "the write less, do more, JavaScript library",
+      },
+      {
+        value: "jquery-ui",
+        label: "jQuery UI",
+        desc: "the official user interface library for jQuery",
+      },
+      {
+        value: "sizzlejs",
+        label: "Sizzle JS",
+        desc: "a pure-JavaScript CSS selector engine",
+      }
+    ];
+ 
+    $( "#autotest1" ).autocomplete({
+      minLength: 0,
+      source: projects,
+      focus: function(event, ui) {
+        $("#autotest1").val(ui.item.label);
+        return false;
+      },
+      select: function(event, ui) {
+        $("#autotest1").val(ui.item.label);
+        $("#project-id").val(ui.item.value);
+        $("#project-description").html(ui.item.desc);
+//      $( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
+        return false;
+      }
+    })
+    .data("ui-autocomplete")._renderItem = function(ul,item) {
+      return $("<li>")
+        .append("<a>" + item.label + "<br>" + item.desc + "</a>")
+        .appendTo(ul);
+    };
+			//====================================
+			var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+    function split(val) {
+      return val.split(/,\s*/);
+    }
+    function extractLast(term) {
+      return split(term).pop();
+    }
+ 
+    $("#autotest2")
+      // 当选择一个条目时不离开文本域
+      .bind("keydown", function(event){
+        if (event.keyCode === $.ui.keyCode.TAB&&$(this).data("ui-autocomplete").menu.active) {
+          event.preventDefault();
+        }
+      }).autocomplete({
+        minLength: 0,
+        source: function( request, response ) {
+          // 回到 autocomplete，但是提取最后的条目
+          response($.ui.autocomplete.filter(
+            availableTags, extractLast(request.term)));
+        },
+        focus: function() {
+          // 防止在获得焦点时插入值
+          return false;
+        },
+        select: function(event,ui){
+          var terms = split(this.value);
+          // 移除当前输入
+          terms.pop();
+          // 添加被选项
+          terms.push(ui.item.value);
+          // 添加占位符，在结尾添加逗号+空格
+          terms.push("");
+          this.value = terms.join(",");
+          return false;
+        }
+      });
+		</script>
+	</body>
+</html>
