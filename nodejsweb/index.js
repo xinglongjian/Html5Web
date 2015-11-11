@@ -2,6 +2,7 @@
  * create nodejsweb base on express4.13.3
  */
 var express = require('express');
+
 var app =express();
 
 //config the views
