@@ -10,9 +10,9 @@ app.set('views','./views');
 app.set('view engine','jade');
 
 
-app.get('/',function(req,res){
+app.get('/:name',function(req,res){
 	//res.send('hello world');
-	res.render('index',{title:'Hey',message:'hello there!'});
+	res.render('index',{title:'express',message:'hello there!'+req.params.name});
 });
 
 
