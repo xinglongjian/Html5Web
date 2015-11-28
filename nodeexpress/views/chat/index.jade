@@ -1,0 +1,18 @@
+extends layout
+
+blocks content
+  span.received-message #{title}
+  input(type='text', class='message', placeholder='what is on your mind?', onkeyup='send(this)')
+  script(src="/socket.io/socket.io.js")
+  script.
+    var socket=io.connect('http://192.168.36.129:3000');
+    socket.on('receive',function(message){
+      console.log('receive %s',message);
+      document.querySelector('.received-message').innerText=message;
+    });
+    var send=function(input){
+      console.log(input.value);
+      var value=input.value;
+      console.log('sending %s to server',value);
+      socket.emit('messageChange',{message:value});
+    }

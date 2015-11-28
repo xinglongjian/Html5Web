@@ -67,8 +67,6 @@ app.set('query parser', 'simple');
 app.set('subdomain offset', 3);
 
 
-
-
 //file upload
 //app.use('/upload', busboy({immediate: true}));
 //app.use('/upload', function(request, response) {
