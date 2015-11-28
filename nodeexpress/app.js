@@ -5,6 +5,24 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 //var busboy = require('connect-busboy');
+var session = require('express-session');
+var csrf = require('csurf');
+var mysql=require('mysql');
+var conn=mysql.createConnection({
+	host:'localhost',
+	user:'root',
+	password:'',
+	database:'nodejs',
+	port:3306
+});
+conn.connect();
+conn.query('select 1+1 as solution',function(err,rows,fields){
+	if(err)
+		throw err;
+	console.log('the solution is :',rows[0].solution);
+});
+conn.end();
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -27,6 +45,8 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));//false use node.js core,true use qs module
 app.use(cookieParser());
+//app.use(session());
+//app.use(csrf());
 app.use(express.static(path.join(__dirname, 'public')));
 console.log(app.get('env'));
 
@@ -105,5 +125,97 @@ app.use(function(err, req, res, next) {
   });
 });
 
+//-----------------------------------------------------
+var debug = require('debug')('nodeexpress:server');
+var http = require('http');
 
-module.exports = app;
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+var io = require('socket.io').listen(server);
+io.set('origins', 'http://192.168.36.129:3000');
+io.sockets.on('connection', function (socket) {
+ socket.on('messageChange', function (data) {
+ console.log(data);
+ socket.emit('receive', data.message.split('').reverse().join('') );
+ });
+});
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+
+
+//module.exports = app;
