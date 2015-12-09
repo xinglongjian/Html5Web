@@ -5,9 +5,14 @@
 		<title></title>
 		<script type="text/javascript" src="js/raphael-min.js" ></script>
 		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
-		<script type="text/javascript" src="js/rgbcolor.js" ></script>
-		<script type="text/javascript" src="js/canvg.js" ></script>
-		<script type="text/javascript" src="js/canvas2image.js" ></script>
+		<!--<script type="text/javascript" src="js/rgbcolor.js" ></script>-->
+		<!--<script type="text/javascript" src="js/canvg.js" ></script>
+		<script type="text/javascript" src="js/canvas2image.js" ></script>-->
+		
+		<script type="text/javascript" src="./js/rgbcolor.js"></script> 
+        <script type="text/javascript" src="./js/StackBlur.js"></script>
+        <script type="text/javascript" src="./js/canvg.js"></script> 
+        <script src="./js/raphael.export.js"></script>
 		<script type="text/javascript">
 		
 		
@@ -117,20 +122,28 @@
 		    
 		    //保存图片
 		    function saveToImage(){
-		    	 var container = $('#canvas-1'),
+		    	
+		    	var canvas_svg = r.toSVG();
+		        canvg('canvastemp',canvas_svg);
+		        //var canvas_html = document.getElementById("canvastemp");
+		        //console.log(canvas_html.toDataURL("image/png"));
+		        //var img=document.getElementById("imgs");
+		        //img.src = canvas_html.toDataURL("image/png");
+                
+		    	// var container = $('#canvas-1'),
                 // Canvg requires trimmed content
-                content = container.html(),
-                canvastemp = document.getElementById('canvastemp');
+               // content = container.html(),
+                //canvastemp = document.getElementById('canvastemp');
 
                 // Draw svg on canvas
-                canvg(canvastemp, content);
+               // canvg(canvastemp, content);
 
                 // Change img be SVG representation
-                var theImage = canvastemp.toDataURL('image/png');
+                //var theImage = canvastemp.toDataURL('image/png');
                 
                 //var w=window.open('about:blank','image from canvas'); 
                 //w.document.write("<img src='"+theImage+"' alt='from canvas'/>"); 
-                $("#imgs").append(Canvas2Image.convertToImage(canvastemp,640,480,'png'));
+               // $("#imgs").append(Canvas2Image.convertToImage(canvastemp,640,480,'png'));
                 //$('#imgHidden').attr('src', theImage);
 		    	//var image = canvastemp.toDataURL('image/png').replace('image/png', 'image/octet-stream;Content-Disposition:attachment;filename=foobar.png'); 
                 //window.location.href=image;
@@ -298,10 +311,8 @@
         
     </div>
     
-    <div id="imgs">
-    	
-    </div>
-    <canvas id="canvastemp" style="display: none;width: 640px;height: 480px;"></canvas>
+    <img id="imgs" src="" />
+    <canvas id="canvastemp" style="width: 640px;height: 480px;"></canvas>
 	<div id="canvas-1" style="border: 1px solid #000000;margin-left: 160px;"></div>
 	</body>
 </html>

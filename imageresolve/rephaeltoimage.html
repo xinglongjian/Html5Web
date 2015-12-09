@@ -9,18 +9,25 @@
     <body>
     <div id="raph_canvas"></div><br> 
     <canvas id="html_canvas" width="50px" height="50px"></canvas>
-
+    <button id='saveBtn'>Save</button>
     <script language="JavaScript">
     var test=Raphael("raph_canvas",50,50);
     var rect=test.rect(0,0,50,50);
     rect.attr({fill: '#fff000', 'fill-opacity':1, 'stroke-width':1})
 
-    window.onload = function() {
-        var canvas_svg = test.toSVG();
+    document.getElementById("saveBtn").addEventListener('click',function(){
+    	var canvas_svg = test.toSVG();
         canvg('html_canvas',canvas_svg);
-        var canvas_html = document.getElementById("html_canvas");
-        window.location = canvas_html.toDataURL("image/png");
-    }
+        //var canvas_html = document.getElementById("html_canvas");
+        //window.location = canvas_html.toDataURL("image/png");
+    },false);
+    
+//  window.onload = function() {
+//      var canvas_svg = test.toSVG();
+//      canvg('html_canvas',canvas_svg);
+//      var canvas_html = document.getElementById("html_canvas");
+//      window.location = canvas_html.toDataURL("image/png");
+//  }
 
     </script>
     </body>
