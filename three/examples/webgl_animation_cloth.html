@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/three.min.js"></script>
+		<style>
+		    body {
+				font-family: Monospace;
+				background-color: #000;
+				color: #000;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info{
+				position: absolute;
+				padding: 10px;
+				width: 100px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="info">
+			Simple Cloth Simulation<br/>
+			Verlet integration with Constrains relaxation<br/>
+			Toggle: <a onclick="rotate = !rotate;">Camera</a> |
+			<a onclick="wind = !wind;">Wind</a> |
+			<a onclick="sphere.visible = !sphere.visible;">Ball</a> |
+			<a onclick="togglePins();">Pins</a>
+		</div>
+		
+		
+		<script>
+			
+			var container,stats;
+			var camera,scene,renderer;
+			
+			var clothGeometry;
+			var sphere;
+			var object;
+			var rotate=true;
+			
+			init();
+			animate();
+			function init(){
+				container=document.createElement('div');
+				document.body.appendChild(container);
+				
+				//scene
+				scene=new THREE.Scene();
+				scene.fog=new THREE.Fog(0xcce0ff,500,10000);
+				//camera
+				camera=new THREE.PerspectiveCamera(30,window.innerWidth/window.innerHeight,1,10000);
+				camera.position.y=50;
+				camera.position.z=1500;
+				scene.add(camera);
+				
+				//light
+				var light,materials;
+				scene.add(new THREE.AmbientLight(0x666666));//设置环境光
+				
+				light=new THREE.DirectionalLight(0xdfebff, 1.75);//平行光
+				light.position.set(50,200,100);
+				light.position.multiplyScalar(1.3);//乘以标量1.3
+//				console.log(light.position.x);
+//				console.log(light.position.y);
+//				console.log(light.position.z);
+				
+				light.castShadow=true;
+				
+				light.shadowMapWidth=1024;
+				light.shadowMapHeight=1024;
+				
+				var d=300;
+				light.shadowCameraLeft=-d;
+				light.shadowCameraRight=d;
+				light.shadowCameraTop=d;
+				light.shadowCameraBottom=-d;
+				
+				light.shadowCameraFar=1000;
+				
+				scene.add(light);
+				
+				//render
+				renderer=new THREE.WebGLRenderer({antialias:true});
+				renderer.setPixelRatio(window.devicePixelRatio);//设置设备像素比
+				renderer.setSize(window.innerWidth,window.innerHeight);
+				renderer.setClearColor(scene.fog.color);
+				
+				container.appendChild(renderer.domElement);
+				
+				renderer.gammaInput=true;
+				renderer.gammaOutput=true;
+				
+				renderer.shadowMap.enabled=true;
+				
+				window.addEventListener('resize',onWindowResize,false);
+				
+				//sphere.visible=!true;
+				
+			}
+			
+			function onWindowResize(){
+				camera.aspect=window.innerWidth/window.innerHeight;
+				camera.updateProjectionMatrix();
+				
+				renderer.setSize(window.innerWidth,window.innerHeight);
+			}
+			
+			function animate(){
+				
+				render();
+			}
+			
+			
+			function render(){
+				
+				renderer.render(scene,camera);
+			}
+		</script>
+	</body>
+</html>
