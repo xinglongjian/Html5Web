@@ -47,7 +47,7 @@
 		<script src="../js/Detector.js"></script>
 		<script src="../js/stats.min.js"></script>
 
-		<!--<script src="../js/Cloth.js"></script>-->
+		<script src="../js/Cloth.js"></script>
 
 		<script type="x-shader/x-fragment" id="fragmentShaderDepth">
 
@@ -217,13 +217,13 @@
 
 				// sphere
 //
-//				var ballGeo = new THREE.SphereGeometry( ballSize, 20, 20 );
-//				var ballMaterial = new THREE.MeshPhongMaterial( { color: 0xaaaaaa } );
-//
-//				sphere = new THREE.Mesh( ballGeo, ballMaterial );
-//				sphere.castShadow = true;
-//				sphere.receiveShadow = true;
-//				scene.add( sphere );
+				var ballGeo = new THREE.SphereGeometry( ballSize, 20, 20 );
+				var ballMaterial = new THREE.MeshPhongMaterial( { color: 0xaaaaaa } );
+
+				sphere = new THREE.Mesh( ballGeo, ballMaterial );
+				sphere.castShadow = true;
+				sphere.receiveShadow = true;
+				scene.add( sphere );
 
 				// ground
 
@@ -242,44 +242,44 @@
 
 				// poles
 
-//				var poleGeo = new THREE.BoxGeometry( 5, 375, 5 );
-//				var poleMat = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 100 } );
+				var poleGeo = new THREE.BoxGeometry( 5, 375, 5 );
+				var poleMat = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, shininess: 100 } );
+
+				var mesh = new THREE.Mesh( poleGeo, poleMat );
+				mesh.position.x = -125;
+				mesh.position.y = -62;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
+
+				var mesh = new THREE.Mesh( poleGeo, poleMat );
+				mesh.position.x = 125;
+				mesh.position.y = -62;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
+
+				var mesh = new THREE.Mesh( new THREE.BoxGeometry( 255, 5, 5 ), poleMat );
+				mesh.position.y = -250 + 750/2;
+				mesh.position.x = 0;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
 //
-//				var mesh = new THREE.Mesh( poleGeo, poleMat );
-//				mesh.position.x = -125;
-//				mesh.position.y = -62;
-//				mesh.receiveShadow = true;
-//				mesh.castShadow = true;
-//				scene.add( mesh );
-//
-//				var mesh = new THREE.Mesh( poleGeo, poleMat );
-//				mesh.position.x = 125;
-//				mesh.position.y = -62;
-//				mesh.receiveShadow = true;
-//				mesh.castShadow = true;
-//				scene.add( mesh );
-//
-//				var mesh = new THREE.Mesh( new THREE.BoxGeometry( 255, 5, 5 ), poleMat );
-//				mesh.position.y = -250 + 750/2;
-//				mesh.position.x = 0;
-//				mesh.receiveShadow = true;
-//				mesh.castShadow = true;
-//				scene.add( mesh );
-//
-//				var gg = new THREE.BoxGeometry( 10, 10, 10 );
-//				var mesh = new THREE.Mesh( gg, poleMat );
-//				mesh.position.y = -250;
-//				mesh.position.x = 125;
-//				mesh.receiveShadow = true;
-//				mesh.castShadow = true;
-//				scene.add( mesh );
-//
-//				var mesh = new THREE.Mesh( gg, poleMat );
-//				mesh.position.y = -250;
-//				mesh.position.x = -125;
-//				mesh.receiveShadow = true;
-//				mesh.castShadow = true;
-//				scene.add( mesh );
+				var gg = new THREE.BoxGeometry( 10, 10, 10 );
+				var mesh = new THREE.Mesh( gg, poleMat );
+				mesh.position.y = -250;
+				mesh.position.x = 125;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
+
+				var mesh = new THREE.Mesh( gg, poleMat );
+				mesh.position.y = -250;
+				mesh.position.x = -125;
+				mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				scene.add( mesh );
 
 				//
 
@@ -304,7 +304,7 @@
 
 				window.addEventListener( 'resize', onWindowResize, false );
 
-				//sphere.visible = !true
+				sphere.visible = !true
 
 			}
 

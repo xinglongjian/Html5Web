@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link href="earth.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="http://ditu.google.cn/maps/api/js?sensor=false&language=zh-CN&libraries=panoramio"></script>
+		<script type="text/javascript" src="fun.js"></script>
+
+		<title></title>
+	</head>
+	<body>
+		<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="220px" valign="top"><a href="http://www.earthol.com/"><img src="logo.gif" alt="logo" width="220" height="70" border="0" /></a></td>
+    <td width="327px">
+	<table width="326px" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="100%"><strong>地标搜索：</strong></td>
+      </tr>
+      <tr>
+        <td width="100%">
+		<form action="http://so.earthol.com/q.php" id="cse-search-box">
+  <div>
+    <input type="text" name="q" size="30" />
+    <input type="submit" value="搜索" />
+  </div>
+	热门城市推荐： <a href="http://www.earthol.com/city-9.html">北京</a> <a href="http://www.earthol.com/city-11.html">上海</a> <a href="http://www.earthol.com/city-32.html">深圳</a> <a href="http://www.earthol.com/city-33.html">广州</a> <a href="http://www.earthol.com/city-38.html">杭州</a> <a href="http://www.earthol.com/city-34.html">南京</a> <a href="http://www.earthol.com/city-35.html">沈阳</a> <a href="http://www.earthol.com/city-40.html">成都</a> <a href="http://www.earthol.com/city-50.html">哈尔滨</a> <a href="http://www.earthol.com/city-49.html">大连</a> <a href="http://www.earthol.com/city-36.html">西安</a> <a href="http://www.earthol.com/city-39.html">拉萨</a> <a href="http://www.earthol.com/city-12.html">香港</a> <a href="http://www.earthol.com/city-10.html">台北</a> <a href="http://www.earthol.com/city-6.html">巴黎</a> <a href="http://www.earthol.com/city-8.html">罗马</a> <a href="http://www.earthol.com/city.html" target="_blank"><strong>城市列表</strong></a>
+		</form>
+		</td>
+      </tr>
+    </table>
+	</td>
+    <td width="470px">
+	<center>
+<a href="http://www.earthol.org/" target="_blank"><img src="http://img.earthol.net/1/jiejing.jpg" alt="街景地图" border="0" /></a>
+	</center>
+	</td>
+	<td>&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="256px" class="toolbars">Google Earth地标在线分享-地球在线</td>
+    <td class="toolbars">
+	&gt;&gt;<a href="javascript:void(0)" onclick="return getmapurl()" title="生成当前位置的访问链接，轻松与好友分享！">与朋友分享当前地图</a>&nbsp;&nbsp;</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="100%" height="100%" valign="top">
+	<div id="map"></div>
+<br />
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-5981821012308379";
+/* 728x90 */
+google_ad_slot = "4399359612";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+<br />
+	<center><strong>地图操作指南(<a href="http://map.earthol.com/help/" target="_blank">查看图文版使用教程</a>)</strong>
+	</center>
+	<p>1.移动地图：在地图上按住鼠标左键拖动或点击地图左上方的方向图标移动。<br />
+2.放大/缩小地图：双击地图上的某一点可以直接放大。也可以通过鼠标滚轮或地图左上方的加减号或滑动杆来缩放。<br />
+3.右上方“当前坐标”栏目动态显示的经纬度为当前地图画面中心点的经纬度。其中经度正数为东经，负数为西经，纬度正数为北纬，负数为南纬。<br />
+4.地图画面右上角的三个按钮是用来切换地图显示模式的。从左至右分别代表“街道电子地图”，“纯卫星地图”和“有标注卫星地图”。请根据需求和喜好自行选择。<br />
+5.分享地图：可以点击屏幕右上方的“与朋友分享当前地图”，系统会自动生成当前位置的网址链接，任何人通过这个链接都可以访问这个位置。</p>
+<br />
+	</td>
+<td width="303px" valign="top">
+	<table width="303px" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+		<center><strong>当前坐标(<a href="javascript:void(0)" onclick="return showaddr()" title="点此查看当前地图位置的详细街路地址信息">显示详细地址信息</a>)</strong></center>
+		<br />
+		<div id="xy"></div>
+		<br />
+<table width="300px" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2" style="font-weight:bold; text-align:center; font-size:14px;">地图操作&amp;模式切换</td>
+    </tr>
+  <tr>
+    <td class="mapctrl">&gt;&gt;<a href="javascript:void(0)" onclick="return showpano()" title="在地图上同步显示相应位置的实景照片"><span id="spbtn">显示实景照片</span></a></td>
+    <td class="mapctrl">&gt;&gt;<a href="javascript:void(0)" onclick="return ceju()" title="测量地图上两点或多点间的距离">测量距离</a></td>
+  </tr>
+  <tr>
+    <td class="mapctrl">&gt;&gt;<a href="javascript:void(0)" onclick="return gotove()" title="切换到微软虚拟地球模式">切换到Bing卫星地图</a></td>
+    <td class="mapctrl">&gt;&gt;<a href="javascript:void(0)" onclick="return gotoss()" title="切换到SOSO地图">切换到SOSO地图</a></td>
+  </tr>
+  <tr>
+    <td class="mapctrl">&gt;&gt;<a href="javascript:void(0)" onclick="return gotobd()" title="切换到百度地图">切换到百度卫星地图</a></td>
+    <td class="mapctrl">&gt;&gt;<a href="javascript:void(0)" onclick="return showmore()" title="显示其他操作选项">更多操作选项...</a></td>
+  </tr>
+</table>
+<br />
+        <center><strong>通过经纬度快速到达</strong></center>
+		<form name="xyform" action="javascript:void(0)" onsubmit="return gotoxy()">
+		输入您要查看地点的经度和纬度（用123.456这种格式，不能用度分秒格式），点击GO即可到达<br />
+		<center>经度：<input type="text" size="8" name="x" /> 纬度：<input type="text" size="8" name="y" /> <input type="submit" value="GO!" /></center>
+		</form>
+		</td>
+      </tr>
+      <tr>
+        <td class="leftbar">
+
+<br />
+<center>
+<script type="text/javascript"><!--
+google_ad_client = "pub-5981821012308379";
+/* eol300 */
+google_ad_slot = "0420855465";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</center>
+<br />
+		</td>
+      </tr>
+	  <tr>
+	  <td valign="bottom" align="center">
+	  
+	  </td>
+	  </tr>
+    </table>
+	</td>
+  </tr>
+</table>
+<script type="text/javascript">
+  load();
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-62195-4']);
+  _gaq.push(['_setDomainName', '.earthol.com']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+	</body>
+</html>
