@@ -10,12 +10,25 @@
 		margin: 0px;
 		background-color: #000;
 	}
-
+	@keyframes kfRotateY {
+	  from {
+	    transform: rotateY(0deg);
+	  }
 	
+	  to {
+	    transform: rotateY(360deg);
+	  }
+	}
+
+
 	.photocube {
 		image:url(img/hill.jpg);
 		rx:0deg;/*该属性意思是x轴旋转，类似的还有x,y,z等同于px,py,pz在坐标轴的位置.
 		          rx,ry,rz围绕坐标轴旋转，sx,sy,sz围绕坐标轴伸缩*/
+		/*animation-duration: 20s;
+	    animation-name: kfRotateY;
+	    animation-iteration-count: infinite;
+	    animation-timing-function:linear;*/
 	}
 </style>
 	</head>
@@ -24,7 +37,13 @@
 		<glam>
 		  <scene>
 		  	<!-- sphere 圆 radius半径 默认为2-->
-			<sphere class="photocube" radius ="1"></sphere>
+            <controller type="model"></controller>
+			<sphere class="photocube" radius ="1" animation="animRotateY"></sphere>
+			<animation id="animRotateY" duration="10s" iteration-count="infinite" timing-function="linear">
+			        <keyframe time="0%" property="transform" value="rotateY(0deg);"></keyframe>
+			        <keyframe time="50%" property="transform" value="rotateY(180deg);"></keyframe>
+			        <keyframe time="100%" property="transform" value="rotateY(360deg);"></keyframe>
+			</animation>
 		  </scene>
 		</glam>
 		</div>
