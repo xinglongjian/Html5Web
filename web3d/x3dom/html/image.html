@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type='text/javascript' src='../js/x3dom.js'> </script> 
+        <link rel='stylesheet' type='text/css' href='../css/x3dom.css'></link> 
+        <style>
+            x3d
+            {
+                border:2px solid darkorange;
+                background: rgba(128,128,128,0.4);
+            }
+            body{
+            	font-size: 110%;
+            	font-family: verdana,sans-serif;
+            	margin: 3em;
+            	color: lightgray;
+            }
+            h1{
+            	color: darkorange;
+            }
+        </style>
+        <script>
+        	function changeImage(){
+        		if(document.getElementById('image').getAttribute('url')=='../img/pattern.png')
+        		   document.getElementById('image').setAttribute('url','../img/fengjing.jpg');
+        		else
+        		   document.getElementById('image').setAttribute('url','../img/pattern.png');
+        	}
+        </script>
+	</head>
+	<body>
+		<h1>Using Images and Movies for Textures!</h1> 
+        <p> 
+            using an image as texture we use the ImageTexture Node. 
+        </p>
+        <!--
+        	PrimitiveQuality:high(默认)|Medium|low
+        -->
+        <x3d width="600px" height="400px" PrimitiveQuality="high">
+        	<scene>
+        		<transform translation='3 0 0'>
+	        		<shape onclick="changeImage();">
+	        			<appearance>
+	        				<ImageTexture id="image" url="../img/pattern.png"><ImageTexture/>
+	        			</appearance>
+	        			<box size='3 3 3'></box>
+	        		</shape>
+        		</transform>
+        		
+        		<transform translation='-3 0 0'>
+        			<shape>
+	        			<appearance>
+	        				<MovieTexture  url="movie/big_buck_bunny.mp4"><MovieTexture/>
+	        			</appearance>
+	        			<box size='3 3 3'></box>
+        			</shape>
+        		</transform>
+        	</scene>
+        </x3d>
+	</body>
+</html>
