@@ -33,30 +33,36 @@
 	<body>
 		<h1>Using Images and Movies for Textures!</h1> 
         <p> 
-            using an image as texture we use the ImageTexture Node. 
+            using an image as texture we use the ImageTexture Node.
+            Chrome使用HTML5播放，不支持有些MP4格式，使用H264解码格式。FireFox使用Flash播放，支持MP4播放
         </p>
+        <video src="big_buck_bunny.mp4" autoplay="autoplay"></video>
         <!--
         	PrimitiveQuality:high(默认)|Medium|low
         -->
-        <x3d width="600px" height="400px" PrimitiveQuality="high">
+        <x3d width="800px" height="800px" PrimitiveQuality="high">
         	<scene>
-        		<transform translation='3 0 0'>
+        		<!--<transform translation='3 0 0'>
 	        		<shape onclick="changeImage();">
 	        			<appearance>
 	        				<ImageTexture id="image" url="../img/pattern.png"><ImageTexture/>
 	        			</appearance>
 	        			<box size='3 3 3'></box>
 	        		</shape>
-        		</transform>
+        		</transform>-->
         		
-        		<transform translation='-3 0 0'>
+        		<transform translation='0 0 0'>
         			<shape>
 	        			<appearance>
-	        				<MovieTexture  url="movie/big_buck_bunny.mp4"><MovieTexture/>
+	        				<MovieTexture repeatS="false" repeatT="false" loop='true' url="big_buck_bunny.ogv"></MovieTexture>
 	        			</appearance>
-	        			<box size='3 3 3'></box>
+	        			<box size="4 4 4"></box>
         			</shape>
         		</transform>
+        		<Sound>
+		            <AudioClip loop='true' enabled="true" url='"sound.mp3" "sound.wav"'/>
+		        </Sound>
+
         	</scene>
         </x3d>
 	</body>
