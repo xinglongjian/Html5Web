@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type='text/javascript' src='../js/x3dom.js'> </script> 
+        <link rel='stylesheet' type='text/css' href='../css/x3dom.css'></link> 
+        <script>
+        	/**
+	 * Change the selected object of the swichting node
+	 * 
+	 * @param nodeId number: New node id to set (starting from 0, or -1 to hide all of them)
+	 */
+	function changeVisibleNode(nodeId)
+	{
+	    document.getElementById("switcher").setAttribute("whichChoice", nodeId);
+	}
+        </script>
+	</head>
+	<body>
+		 <x3d width='500px' height='400px'> 
+		    <scene>
+			    <Switch whichChoice="0" id="switcher">
+			        <transform DEF="ball" translation='-2 0 0'>
+				        <shape>
+				            <appearance>
+				                <material diffuseColor='1 0 0'></material>
+				            </appearance>
+				            <sphere></sphere>
+				        </shape>
+			        </transform>
+			        
+			        <transform DEF="ball" translation='2 0 0'>
+				        <shape>
+				            <appearance>
+				                <material diffuseColor='0 0 1'></material>
+				            </appearance>
+				            <sphere></sphere>
+				        </shape>
+			        </transform>
+				</Switch>
+		    </scene> 
+		    </x3d> 
+		    <input type="range" id="sliderShadowIntesity" min="-1" max="1" step="1" value="0" onchange="changeVisibleNode(this.value)">
+	</body>
+</html>

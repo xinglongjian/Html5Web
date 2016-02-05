@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ViewPoint</title>
+		<script type='text/javascript' src='../js/x3dom.js'> </script> 
+        <link rel='stylesheet' type='text/css' href='../css/x3dom.css'></link> 
+	</head>
+	<body>
+		 <X3D width="600" height="600">
+      <Scene DEF='scene'>
+        <Viewpoint id="front" position="-0.07427 0.95329 -2.79608" orientation="-0.01451 0.99989 0.00319 3.15833" description="camera"></Viewpoint>
+        <Viewpoint id="right" position="-2.43383 1.07351 -1.28700" orientation="-0.00318 -0.99950 -0.03159 2.06609" description="camera"></Viewpoint>
+        <Transform>
+          <Inline url="../model/Deer.x3d"></Inline>
+        </Transform>
+      </Scene>
+    </X3D>
+    <button onclick="document.getElementById('right').setAttribute('set_bind','true');">Right</button>
+    <button onclick="document.getElementById('front').setAttribute('set_bind','true');">Left </button>
+	</body>
+</html>
