@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type='text/javascript' src='../js/x3dom.js'> </script> 
+        <link rel='stylesheet' type='text/css' href='../css/x3dom.css'></link> 
+        <script>
+    function redNose()
+    {
+        if(document.getElementById('Deer__MA_Material').getAttribute('diffuseColor')!= '1 0 0')
+            document.getElementById('Deer__MA_Material').setAttribute('diffuseColor', '1 0 0');
+        else
+            document.getElementById('Deer__MA_Material').setAttribute('diffuseColor', '0 1 0');
+    }
+</script>
+	</head>
+	<body>
+		<x3d width='500px' height='400px'> 
+		    <scene>
+				<inline nameSpaceName="Deer" mapDEFToID="true" onclick='redNose();' url="../model/untitled.x3d" diffuseColor="1 0 1"> </inline> 
+		    </scene> 
+	    </x3d>  
+	</body>
+</html>
