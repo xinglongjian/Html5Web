@@ -130,9 +130,9 @@ function getImageItem() {
   var rando = Math.ceil( Math.random() * 1000 );
   // 10% chance of broken image src
   // random parameter to prevent cached images
-  var src = rando < 100 ? '//foo/broken-' + rando + '.jpg' :
+  //var src = rando < 100 ? '//foo/broken-' + rando + '.jpg' :
     // use lorempixel for great random images
-    '//lorempixel.com/' + width + '/' + height + '/' + '?' + rando;
+    //'//lorempixel.com/' + width + '/' + height + '/' + '?' + rando;
   item += '<img src="' + src + '" /></li>';
   console.log(item);
   return item;
