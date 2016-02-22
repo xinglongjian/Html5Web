@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type='text/javascript' src='../../js/x3dom.js'> </script> 
+        <link rel='stylesheet' type='text/css' href='../../css/x3dom.css'></link> 
+	</head>
+	<body>
+		 <x3d width="600px" height="400px">
+		 <Scene>
+		
+		<Shape>
+			<!--<Cone height='1'></Cone>--> 
+			<Cylinder radius='0.6' top='true'></Cylinder> 
+			<Appearance>
+				<Material/>
+			</Appearance>
+		</Shape>
+		<Background skyColor='1 1 1'></Background> 
+		<Viewpoint id="high" description='Side View' position='0 0 3'></Viewpoint> 
+		<Viewpoint id="low" description='Book View' orientation='-1 0 0 0.68' position='0 1.11 1.93'></Viewpoint> 
+		</Scene>
+		 </x3d>
+		 <button onclick="document.getElementById('high').setAttribute('set_bind','true');">High</button>
+    <button onclick="document.getElementById('low').setAttribute('set_bind','true');">Low </button>
+	</body>
+</html>
