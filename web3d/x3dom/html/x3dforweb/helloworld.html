@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type='text/javascript' src='../../js/x3dom.js'> </script> 
+        <link rel='stylesheet' type='text/css' href='../../css/x3dom.css'></link> 
+	</head>
+	<body>
+		 <x3d width="600px" height="400px">
+		 <Scene>
+		 	<Group>
+		 		
+		 	    <Transform rotation='0 1 0 3'>
+		 	    	<Shape>
+		 	    		<Sphere/>
+		 	    		<Appearance>
+		 	    			<Material DEF='MaterialLightBlue' diffuseColor='0.1 0.5 1'/>
+		 	    			<ImageTexture DEF='ImageCloudlessEarth' 
+		 	    				url='"../../img/earth-topo.png" "../../img/earth-topo.jpg" "../../img/earth-topo-small.gif" "http://x3dgraphics.com/examples/X3dForWebAuthors/Chapter01-TechnicalOverview/earth-topo.png" "http://x3dgraphics.com/examples/X3dForWebAuthors/Chapter01-TechnicalOverview/earth-topo.jpg" "http://x3dgraphics.com/examples/X3dForWebAuthors/Chapter01-TechnicalOverview/earth-topo-small.gif"'/>
+		 	    		</Appearance>
+		 	    	</Shape>
+		 	    </Transform>
+		 	    <Transform translation='0 -2 0'>
+		 	    	<Shape>
+		 	    		<Text DEF='TextMessage' string='"Hello World!"'>
+		 	    			<FontStyle justify='"MIDDLE" "MIDDLE"'/>
+		 	    		</Text>
+		 	    		<Appearance>
+							<Material USE='MaterialLightBlue'/>
+						</Appearance>
+		 	    	</Shape>
+		 	    </Transform>
+		 	    <Viewpoint DEF='ViewUpClose' centerOfRotation='0 -1 0' description='Hello World' position='0 -1 7'/>
+		 	</Group>
+			
+		</Scene>
+		 </x3d>
+	</body>
+</html>
