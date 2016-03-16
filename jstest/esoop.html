@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ES6中面向对象语法</title>
+		<script type="text/javascript">
+			(function(){
+				'use strict';
+				//定义Person类
+				class Person{
+					constructor(name,age,job){
+						this.name=name;
+						this.age=age;
+						this.job=job;
+					}
+					sayName(){
+						console.log(this.name);
+					}
+				}
+				//定义Student继承Person类
+				class Student extends Person{
+					constructor(name,age,school){
+						super(name,age,'Student');
+						this.school=school;
+					}
+					
+					saySchool(){
+						console.log(this.school);
+					}
+				}
+				
+				var stu1=new Student('weiwei',23,'School1');
+				var stu2=new Student('lily',24,'nanjing');
+				
+				stu1.sayName();
+				stu1.saySchool();
+				
+				stu2.sayName();
+				stu2.saySchool();
+				
+				
+			})();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

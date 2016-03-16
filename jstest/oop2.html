@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JS面向对象</title>
+		<script type="text/javascript">
+		(function(){
+			function Person(name,age,job){
+				this.name=name;
+				this.age=age;
+				this.job=job;
+			}
+			
+			//当需要有多个原型方法需要定义时，就需要写多次原型
+			//此时可以用一个包含所有属性和方法的对象字面量来重写整个原型对象
+			Person.prototype={
+				//这里务必要重新将构造函数指回Person构造函数，否则会指向这个新创建的对象
+				constructor:Person,
+				country:'China',
+				sayName:function(){
+					console.log(this.name);
+				}
+				
+			}
+			
+			var person1=new Person('weiwei',24,'Student');
+			var person2=new Person('22222',23,'Doctor');
+			console.log(person1.sayName===person2.sayName);
+			person1.sayName();
+			person2.sayName();
+			
+		})();
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JS面向对象</title>
+		<script type="text/javascript">
+		(function(){
+			function Person(name,age,job){
+				this.name=name;
+				this.age=age;
+				this.job=job;
+			}
+			
+			//通过原型模型添加所有实例共享的方法
+			//sayName()方法将会被Person的所有实例共享
+			Person.prototype.sayName=function(){
+				console.log(this.name);
+			}
+			
+			//也可以是公共属性
+			Person.prototype.country='China';
+			
+			var person1=new Person('weiwei',24,'Student');
+			var person2=new Person('dsdf',23,'Doctor');
+			console.log(person1.sayName===person2.sayName);
+			person1.sayName();
+			person2.sayName();
+			
+		})();
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

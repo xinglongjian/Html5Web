@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Promise</title>
+		<script type="text/javascript">
+		
+		    //创建该Promise对象就会导致代码执行，传入的参数
+		    //resolve，执行成功后的异步回调函数
+		    //reject,执行失败后的异步回调函数
+			var p=new Promise(function(resolve,reject){
+				//执行一些异步操作
+				setTimeout(function(){
+					console.log('执行完成');
+					resolve('成功了');
+				},2000);
+			});
+			/*********************************************/
+			//一般用Promise的时候，是将其包含在一个函数里
+			function runAsync(){
+				var p=new Promise(function(resolve,reject){
+					//执行一些异步操作
+					setTimeout(function(){
+						console.log('执行完成fun');
+						resolve('成功了fun');
+						//reject('失败了fun');
+					},2000);
+			    });
+			    
+			    return p;
+			}
+			//调用该函数
+			runAsync(); //该函数会返回Promise对象
+			
+			runAsync().then(function(data){
+				//成功后执行的。
+				console.log(data);//
+				//该data是从resolve获得的参数，后面可以用该数据
+				console.log(noexist);
+			},function(reason,data){
+				//失败后执行的。该函数是reject
+				console.log(reason);
+			}).catch(function(reason){
+				//捕获异常
+				//当执行then函数时报错会捕获,不会导致浏览器死掉
+				console.log(reason);
+			});
+			/**all*********************************************/
+			
+			//all的用法
+			//提供了并行执行异步操作的能力，并且在所有异步操作执行完后才执行回调
+			function runAsync1(){
+				var p=new Promise(function(resolve,reject){
+					//执行一些异步操作
+					setTimeout(function(){
+						console.log('执行完成fun-1');
+						resolve('成功了fun-1');
+						//reject('失败了fun');
+					},1000);
+			    });
+			    
+			    return p;
+			}
+			function runAsync2(){
+				var p=new Promise(function(resolve,reject){
+					//执行一些异步操作
+					setTimeout(function(){
+						console.log('执行完成fun-2');
+						resolve('成功了fun-2');
+						//reject('失败了fun');
+					},2000);
+			    });
+			    
+			    return p;
+			}
+			
+			Promise.all([runAsync1(),runAsync2()])
+			.then(function(results){
+				console.log(results);//结果也放到数组里了
+			});
+			
+			//=================================
+			//race用法，谁跑的快，以谁为准
+			Promise.race([runAsync1(),runAsync2()])
+			.then(function(results){
+				console.log(results);//结果也放到数组里了
+			});
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
