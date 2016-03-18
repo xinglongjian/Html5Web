@@ -1,11 +1,156 @@
 @charset "utf-8";
 /* CSS Document */
 
-body {
-margin:0;
-padding:0;
-width:100%;
-height:100%;
+/*
+ * Copyright (c) 2001-2014,FineReport Inc, All Rights Reserved.
+ */
+body{
+    color:#333;
+    font-size: 12px;
+    font-family: 'microsoft yahei', Microsoft YaHei, STXihei, SimHei, SimSun, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-image: url('../img/bg.jpg');
+    background-size:cover;
+    background-origin: content-box;/*相对于内容来定位*/
+    background-position:top;
+    background-attachment: fixed;/*让背景图片固定*/
+    background-repeat: no-repeat;
 }
 
+#fs-login, #fs-login-glass, #fs-login-scalebg{
+    position: absolute;
+    margin-top: -140px;
+    margin-left: -200px;
+    left: 50%;
+    top: 50%;
+    width: 400px;
+    height: 280px;
+    border-radius : 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+}
+#fs-login-content{
+    position: relative;
+    padding: 0 45px;
+}
+
+#fs-login-title{
+    text-align: center;
+    height: 60px;
+    line-height: 75px;
+    font-size: 20px;
+}
+
+#fs-login-glass{
+    filter:Alpha(opacity=60);
+    opacity: 0.7;
+    background: #ffffff;
+    border: solid 1px #e0e2e7;
+    border-radius : 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+}
+
+#fs-login-scalebg{
+    overflow: hidden;
+}
+
+#fs-login-scalebg img.fs-login-scalebg-img{
+    -webkit-filter: blur(7px);
+    -moz-filter: blur(7px);
+    -ms-filter: blur(7px);
+    filter: blur(7px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=7, MakeShadow=false);
+}
+
+div.fs-login-input{
+    position: relative;
+    border-radius : 2px;
+    margin: 8px 0;
+    padding: 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border: solid 1px #c0c0c0;
+}
+
+input, div.fs-login-errmask{
+    margin: 0;
+    border: 0;
+    border-radius : 1px;
+    vertical-align:middle;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    font-size: 16px;
+    height: 42px;
+}
+input{
+    position: relative;
+    margin: 0 0 0 55px;
+    padding: 0;
+    outline: none;
+    width: 253px;
+    line-height: 42px\9;
+}
+div.fs-login-errmask{
+    filter: Alpha(opacity=80);
+    opacity: 0.8;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 44px;
+    color: #ffffff;
+    width: 308px;
+    line-height: 42px;
+    text-align: center;
+    background: #333;
+    z-index: 1;
+}
+div.fs-login-input-focus{
+    border-color: #9b9b9b;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.12) ;
+}
+
+div.fs-login-input-username{
+    background: #ffffff url('../img/up.png') no-repeat 20px 10px;
+}
+div.fs-login-input-password{
+    background: #ffffff url('../img/up.png') no-repeat 20px -50px;
+}
+
+a{
+    display: block;
+    height: 42px;
+    margin-top: 26px;
+    background: #007aff;
+    color: #ffffff;
+    text-align: center;
+    line-height: 42px;
+    font-size: 18px;
+    border-radius : 2px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    cursor: pointer !important;
+    text-decoration: none;
+    outline: none;
+}
+a:hover{
+    background: #0662c7;
+}
+div.fs-login-check{
+    text-align: right;
+    height: 40px;
+    line-height: 40px;
+}
+span.fs-login-remember{
+    cursor: pointer !important;
+    font-size: 16px;
+    padding-left: 25px;
+    background:url('../img/rember.gif') no-repeat 4px 2px;
+
+}
+span.fs-login-remember-selected{
+    background:url('../img/rember.gif') no-repeat 4px -46px;
+}
 

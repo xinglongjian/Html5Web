@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>CSS3 Filters</title>
+		<style>
+			img#opacity{
+				filter:alpha(opacity=50);
+				opacity:.5;
+			}
+			img#grayscale{
+				-webkit-filter: grayscale(1);
+			}
+			img#sepia{
+				-webkit-filter: sepia(0.9);
+			}
+			img#saturate{
+				-webkit-filter: saturate(0.1);
+			}
+			img#hue-rotate{
+				-webkit-filter: hue-rotate(90deg);
+			}
+			img#brightness{
+				-webkit-filter: brightness(0.7);
+			}
+			img#contrast{
+				-webkit-filter: contrast(5);
+			}
+			img#blur{
+				-webkit-filter: blur(3px);
+			}
+			img#drop-shadow{
+				-webkit-filter: drop-shadow(3px 3px 3px #ccc);
+			}
+		</style>
+	</head>
+	<body>
+		<p>
+			filters主要用于图片上，以实现一些特效:<br/>
+			grayscale灰度<br/>
+sepia褐色（求专业指点翻译）<br/>
+saturate饱和度<br/>
+hue-rotate色相旋转<br/>
+invert反色<br/>
+opacity透明度<br/>
+brightness亮度<br/>
+contrast对比度<br/>
+blur模糊<br/>
+drop-shadow阴影<br/>
+		</p>
+		<table>
+			<tr>
+				<td>
+					<img src="./img/filter.jpg" />
+				</td>
+				<td>
+					<img id="opacity"  alt="透明 "src="./img/filter.jpg" />
+				</td>
+				<td>
+					<img id="grayscale" alt="灰度 " src="./img/filter.jpg" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="sepia" alt="褐色 " src="./img/filter.jpg" />
+				</td>
+				<td>
+					<img id="saturate" alt="饱和度" src="./img/filter.jpg" />
+				</td>
+				<td>
+					<img id="hue-rotate" alt="色相翻转 " src="./img/filter.jpg" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="brightness" alt="亮度 " src="./img/filter.jpg" />
+				</td>
+				<td>
+					<img id="contrast" alt="对比度" src="./img/filter.jpg" />
+				</td>
+				<td>
+					<img id="blur" alt="模糊 " src="./img/filter.jpg" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<img id="drop-shadow" alt="阴影 " src="./img/filter.jpg" />
+				</td>
+			</tr>
+		</table>
+		
+	</body>
+</html>
