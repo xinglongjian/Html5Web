@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>MediaRecorder</title>
+		<script type="text/javascript">
+	        function notifyMe(){
+	        	if(!("Notification" in window)){
+	        		alert("This brower does not support desktop notification");
+	        	}
+	        	//检查是否授权
+	        	else if(Notification.permission==="granted"){
+	        		//创建一个通知
+	        		var notification=new Notification("Hi here");
+	        	}
+	        	//询问授权
+	        	else if(Notification.permission !=='denied'){
+	        		Notification.requestPermission(function(permission){
+	        			if(permission === 'granted'){
+	        				var notification=new Notification("Hi here");
+	        			}
+	        		});
+	        	}
+	        	
+	        	
+	        }
+		</script>
+	</head>
+	<body>
+	<h3>参考资料</h3>
+	<a href="https://developer.mozilla.org/en-US/docs/Web/API/notification">https://developer.mozilla.org/en-US/docs/Web/API/notification</a>
+	
+	<button onclick="notifyMe()">Notify me!</button>
+	</body>
+</html>
