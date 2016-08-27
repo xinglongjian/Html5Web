@@ -3,6 +3,13 @@
 	<head>
 		<meta charset="utf-8">
 		<title></title>
+		<script>
+			var myWorker=new Worker("my_task.js");
+			myWorker.onmessage=function(oEvent){
+				console.log("Worker said:"+oEvent.data);
+			}
+			myWorker.postMessage("ali");
+		</script>
 	</head>
 	<body>
 	</body>
